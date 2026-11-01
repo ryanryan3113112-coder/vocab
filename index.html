@@ -56,7 +56,6 @@
       padding: 12px 14px;
     }
 
-    /* 頂部 Header */
     .app-header {
       text-align: center;
       margin-bottom: 1rem;
@@ -81,7 +80,6 @@
       font-weight: 700;
     }
 
-    /* 分頁導覽列 */
     .nav-tabs {
       display: flex;
       background: #e2e8f0;
@@ -111,7 +109,6 @@
       box-shadow: var(--shadow-sm);
     }
 
-    /* 區塊卡片共通樣式 */
     .card {
       background: var(--surface);
       border-radius: var(--radius);
@@ -138,7 +135,6 @@
       display: block;
     }
 
-    /* 按鈕共通樣式 */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -207,7 +203,6 @@
       color: var(--text-main);
     }
 
-    /* 頁面 1: 表單與列表 */
     .simple-form {
       display: flex;
       flex-direction: column;
@@ -360,7 +355,6 @@
       flex-wrap: wrap;
     }
 
-    /* 頁面 2: 單字卡 */
     .flashcard-wrapper {
       display: flex;
       flex-direction: column;
@@ -486,7 +480,6 @@
       padding: 0.75rem 0.5rem;
     }
 
-    /* 頁面 3: 隨機考試 */
     .quiz-wrapper {
       display: flex;
       flex-direction: column;
@@ -681,7 +674,6 @@
       border-color: #dc2626;
     }
 
-    /* 批次匯入 Modal */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -811,7 +803,103 @@
         </div>
 
         <div id="word-list-container" class="word-list">
-          <!-- 動態渲染 -->
+          <div class="word-item">
+            <div class="word-info">
+              <div class="word-en-line">
+                <span class="lesson-badge badge-custom">單字庫</span>
+                <span class="word-en">stranger</span>
+              </div>
+              <span class="word-zh">陌生人</span>
+            </div>
+            <div class="word-tools">
+              <button class="icon-btn" data-speak="stranger">🔊 發音</button>
+              <button class="icon-btn" data-del-index="0">🗑️</button>
+            </div>
+          </div>\n          <div class="word-item">
+            <div class="word-info">
+              <div class="word-en-line">
+                <span class="lesson-badge badge-custom">單字庫</span>
+                <span class="word-en">parade</span>
+              </div>
+              <span class="word-zh">遊行</span>
+            </div>
+            <div class="word-tools">
+              <button class="icon-btn" data-speak="parade">🔊 發音</button>
+              <button class="icon-btn" data-del-index="1">🗑️</button>
+            </div>
+          </div>\n          <div class="word-item">
+            <div class="word-info">
+              <div class="word-en-line">
+                <span class="lesson-badge badge-custom">單字庫</span>
+                <span class="word-en">cheerfully</span>
+              </div>
+              <span class="word-zh">興高采烈的</span>
+            </div>
+            <div class="word-tools">
+              <button class="icon-btn" data-speak="cheerfully">🔊 發音</button>
+              <button class="icon-btn" data-del-index="2">🗑️</button>
+            </div>
+          </div>\n          <div class="word-item">
+            <div class="word-info">
+              <div class="word-en-line">
+                <span class="lesson-badge badge-custom">單字庫</span>
+                <span class="word-en">spare</span>
+              </div>
+              <span class="word-zh">倖免</span>
+            </div>
+            <div class="word-tools">
+              <button class="icon-btn" data-speak="spare">🔊 發音</button>
+              <button class="icon-btn" data-del-index="3">🗑️</button>
+            </div>
+          </div>\n          <div class="word-item">
+            <div class="word-info">
+              <div class="word-en-line">
+                <span class="lesson-badge badge-custom">單字庫</span>
+                <span class="word-en">respect</span>
+              </div>
+              <span class="word-zh">尊敬</span>
+            </div>
+            <div class="word-tools">
+              <button class="icon-btn" data-speak="respect">🔊 發音</button>
+              <button class="icon-btn" data-del-index="4">🗑️</button>
+            </div>
+          </div>\n          <div class="word-item">
+            <div class="word-info">
+              <div class="word-en-line">
+                <span class="lesson-badge badge-custom">單字庫</span>
+                <span class="word-en">tourist</span>
+              </div>
+              <span class="word-zh">觀光客</span>
+            </div>
+            <div class="word-tools">
+              <button class="icon-btn" data-speak="tourist">🔊 發音</button>
+              <button class="icon-btn" data-del-index="5">🗑️</button>
+            </div>
+          </div>\n          <div class="word-item">
+            <div class="word-info">
+              <div class="word-en-line">
+                <span class="lesson-badge badge-custom">單字庫</span>
+                <span class="word-en">target</span>
+              </div>
+              <span class="word-zh">靶子</span>
+            </div>
+            <div class="word-tools">
+              <button class="icon-btn" data-speak="target">🔊 發音</button>
+              <button class="icon-btn" data-del-index="6">🗑️</button>
+            </div>
+          </div>\n          <div class="word-item">
+            <div class="word-info">
+              <div class="word-en-line">
+                <span class="lesson-badge badge-custom">單字庫</span>
+                <span class="word-en">community</span>
+              </div>
+              <span class="word-zh">社區</span>
+            </div>
+            <div class="word-tools">
+              <button class="icon-btn" data-speak="community">🔊 發音</button>
+              <button class="icon-btn" data-del-index="7">🗑️</button>
+            </div>
+          </div>
         </div>
 
         <div id="empty-hint" style="display: none; text-align: center; padding: 2rem 1rem; color: var(--text-muted);">
@@ -888,7 +976,6 @@
             <h2 id="quiz-question-prompt" class="quiz-prompt">陌生人</h2>
             <p id="quiz-hint-text" class="quiz-hint">請選出正確的英文單字：</p>
 
-            <!-- 四選一選擇題區域 -->
             <div id="quiz-choices" class="choices-grid">
               <button class="choice-btn" data-en="stranger">stranger</button>
               <button class="choice-btn" data-en="parade">parade</button>
@@ -896,14 +983,12 @@
               <button class="choice-btn" data-en="spare">spare</button>
             </div>
 
-            <!-- 拼字 / 聽寫輸入區域 -->
             <form id="quiz-form" class="quiz-spell-form" style="display: none;" onsubmit="return false;">
               <input type="text" id="quiz-input" class="quiz-spell-input" placeholder="在此輸入拼字..." autocomplete="off" autocapitalize="off" spellcheck="false">
               <button type="submit" id="btn-quiz-submit" class="btn btn-primary" style="flex-shrink: 0; min-width: 90px;">送出</button>
             </form>
           </div>
 
-          <!-- 即時回饋與訂正區域 -->
           <div id="quiz-feedback" class="quiz-feedback" style="display: none;">
             <div id="feedback-message" class="feedback-message"></div>
 
@@ -957,9 +1042,7 @@
   </div>
 
   <script>
-    // ================= 預設單字與版本控制 =================
-    const CURRENT_DATA_VERSION = "2026_11_01_user_v2";
-
+    const CURRENT_DATA_VERSION = "2026_11_01_user_v4";
     const DEFAULT_WORDS = [{"en": "stranger", "zh": "陌生人", "lesson": "單字庫"}, {"en": "parade", "zh": "遊行", "lesson": "單字庫"}, {"en": "cheerfully", "zh": "興高采烈的", "lesson": "單字庫"}, {"en": "spare", "zh": "倖免", "lesson": "單字庫"}, {"en": "respect", "zh": "尊敬", "lesson": "單字庫"}, {"en": "tourist", "zh": "觀光客", "lesson": "單字庫"}, {"en": "target", "zh": "靶子", "lesson": "單字庫"}, {"en": "community", "zh": "社區", "lesson": "單字庫"}];
 
     let words = [...DEFAULT_WORDS];
@@ -972,7 +1055,6 @@
     let quizScore = 0;
     let currentQuizWord = null;
 
-    // 音訊播放 (使用標準 Web Speech API，完整支援任何英文單字)
     function speak(text) {
       if (!text) return;
       const clean = text.trim().toLowerCase().replace(/[\.\(\)]/g, " ").replace(/\s+/g, " ").trim();
@@ -987,8 +1069,8 @@
         console.warn("Speech error:", e);
       }
     }
+    window.speak = speak;
 
-    // 音效音調反饋 (Web Audio API)
     let audioCtx = null;
     function getAudioContext() {
       if (!audioCtx) {
@@ -1032,7 +1114,6 @@
       } catch (e) {}
     }
 
-    // 安全本地儲存
     const SafeStorage = {
       get: function(key) {
         try {
@@ -1121,7 +1202,6 @@
       if (totalCountEl) totalCountEl.textContent = words.length;
     }
 
-    // ================= 頁面分頁導覽 =================
     function initNavigation() {
       const tabButtons = document.querySelectorAll(".tab-btn");
       tabButtons.forEach(function(btn) {
@@ -1153,12 +1233,30 @@
       return "badge-custom";
     }
 
-    // ================= 單字列表管理 =================
     function initWordList() {
       const form = document.getElementById("add-word-form");
       const inputEn = document.getElementById("input-en");
       const inputZh = document.getElementById("input-zh");
       const inputLesson = document.getElementById("input-lesson");
+      const container = document.getElementById("word-list-container");
+
+      if (container) {
+        container.addEventListener("click", function(e) {
+          const speakBtn = e.target.closest("[data-speak]");
+          if (speakBtn) {
+            e.stopPropagation();
+            speak(speakBtn.getAttribute("data-speak"));
+            return;
+          }
+          const delBtn = e.target.closest("[data-del-index]");
+          if (delBtn) {
+            e.stopPropagation();
+            const idx = parseInt(delBtn.getAttribute("data-del-index"), 10);
+            deleteWord(idx);
+            return;
+          }
+        });
+      }
 
       form.addEventListener("submit", function(e) {
         e.preventDefault();
@@ -1205,7 +1303,6 @@
       });
       const lessons = Array.from(lessonSet);
 
-      // 1. 列表篩選 Bar
       const filterBar = document.querySelector(".lesson-filter-bar");
       if (filterBar) {
         let pillsHtml = '<button class="filter-pill ' + (currentListFilter === "all" ? "active" : "") + '" data-lesson="all">🌟 全部 (<span id="count-all">' + words.length + '</span>)</button>';
@@ -1224,7 +1321,6 @@
         });
       }
 
-      // 2. 單字卡範圍選單
       const fcSelect = document.getElementById("fc-lesson-select");
       if (fcSelect) {
         const curVal = fcSelect.value;
@@ -1241,7 +1337,6 @@
         }
       }
 
-      // 3. 隨機考試範圍選單
       const quizSelect = document.getElementById("quiz-lesson-select");
       if (quizSelect) {
         const curVal = quizSelect.value;
@@ -1258,7 +1353,6 @@
         }
       }
 
-      // 4. 新增表單課次選單
       const inputLesson = document.getElementById("input-lesson");
       if (inputLesson) {
         const cur = inputLesson.value;
@@ -1303,8 +1397,8 @@
             '<span class="word-zh">' + escapeHtml(w.zh) + '</span>' +
           '</div>' +
           '<div class="word-tools">' +
-            '<button class="icon-btn" onclick="speak('' + escapeHtml(w.en).replace(/'/g, "\\'") + '')">🔊 發音</button>' +
-            '<button class="icon-btn" onclick="deleteWord(' + w.originalIndex + ')">🗑️</button>' +
+            '<button class="icon-btn" data-speak="' + escapeHtml(w.en) + '">🔊 發音</button>' +
+            '<button class="icon-btn" data-del-index="' + w.originalIndex + '">🗑️</button>' +
           '</div>' +
         '</div>';
       }).join("");
@@ -1316,8 +1410,8 @@
       updateFilterAndLessonSelects();
       renderWordList();
     }
+    window.deleteWord = deleteWord;
 
-    // ================= 批次匯入功能 =================
     function initBatchImport() {
       const modal = document.getElementById("batch-import-modal");
       const btnOpen = document.getElementById("btn-batch-modal-open");
@@ -1357,7 +1451,6 @@
           line = line.trim();
           if (!line) return;
 
-          // 匹配常見格式：English + 中文 (支援空格、逗號、冒號、破折號分隔)
           const match = line.match(/^([a-zA-Z\s\(\)\-\.\'\/]+?)[\s\:\,\t\-\=\–\—]+([^\x00-\x7F].*)$/);
           if (match) {
             parsedWords.push({
@@ -1366,8 +1459,7 @@
               lesson: defaultLesson
             });
           } else {
-            // 嘗試以空白或 tab 分割
-            const parts = line.split(/[\t\s]{2,}|\t/);
+            const parts = line.split(/[\t\s]{{2,}}|\t/);
             if (parts.length >= 2) {
               parsedWords.push({ en: parts[0].trim(), zh: parts[1].trim(), lesson: defaultLesson });
             } else {
@@ -1406,7 +1498,6 @@
       });
     }
 
-    // ================= 單字卡 =================
     function getFilteredCardWords() {
       const select = document.getElementById("fc-lesson-select");
       const filter = select ? select.value : "all";
@@ -1546,7 +1637,6 @@
       speak(current.en);
     }
 
-    // ================= 隨機考試系統 =================
     function getFilteredQuizWords() {
       const select = document.getElementById("quiz-lesson-select");
       const filter = select ? select.value : "all";
