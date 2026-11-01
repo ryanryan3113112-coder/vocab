@@ -790,7 +790,7 @@
 
       <section class="card">
         <h2>
-          <span>📚 單字庫 (<span id="total-count">8</span>)</span>
+          <span>📚 單字庫 (<span id="total-count">9</span>)</span>
           <div class="list-header-actions">
             <button id="btn-batch-modal-open" class="btn btn-primary-subtle" title="批次貼上整批單字">📋 批次匯入</button>
             <button id="btn-quick-sample" class="btn btn-subtle" title="恢復預設單字">恢復預設</button>
@@ -799,7 +799,7 @@
         </h2>
 
         <div class="lesson-filter-bar">
-          <button class="filter-pill active" data-lesson="all">🌟 全部 (<span id="count-all">8</span>)</button>
+          <button class="filter-pill active" data-lesson="all">🌟 全部 (<span id="count-all">9</span>)</button>
         </div>
 
         <div id="word-list-container" class="word-list">
@@ -843,13 +843,25 @@
             <div class="word-info">
               <div class="word-en-line">
                 <span class="lesson-badge badge-custom">單字庫</span>
+                <span class="word-en">splash</span>
+              </div>
+              <span class="word-zh">戲水</span>
+            </div>
+            <div class="word-tools">
+              <button class="icon-btn" data-speak="splash">🔊 發音</button>
+              <button class="icon-btn" data-del-index="3">🗑️</button>
+            </div>
+          </div>\n          <div class="word-item">
+            <div class="word-info">
+              <div class="word-en-line">
+                <span class="lesson-badge badge-custom">單字庫</span>
                 <span class="word-en">spare</span>
               </div>
               <span class="word-zh">倖免</span>
             </div>
             <div class="word-tools">
               <button class="icon-btn" data-speak="spare">🔊 發音</button>
-              <button class="icon-btn" data-del-index="3">🗑️</button>
+              <button class="icon-btn" data-del-index="4">🗑️</button>
             </div>
           </div>\n          <div class="word-item">
             <div class="word-info">
@@ -861,7 +873,7 @@
             </div>
             <div class="word-tools">
               <button class="icon-btn" data-speak="respect">🔊 發音</button>
-              <button class="icon-btn" data-del-index="4">🗑️</button>
+              <button class="icon-btn" data-del-index="5">🗑️</button>
             </div>
           </div>\n          <div class="word-item">
             <div class="word-info">
@@ -873,7 +885,7 @@
             </div>
             <div class="word-tools">
               <button class="icon-btn" data-speak="tourist">🔊 發音</button>
-              <button class="icon-btn" data-del-index="5">🗑️</button>
+              <button class="icon-btn" data-del-index="6">🗑️</button>
             </div>
           </div>\n          <div class="word-item">
             <div class="word-info">
@@ -885,7 +897,7 @@
             </div>
             <div class="word-tools">
               <button class="icon-btn" data-speak="target">🔊 發音</button>
-              <button class="icon-btn" data-del-index="6">🗑️</button>
+              <button class="icon-btn" data-del-index="7">🗑️</button>
             </div>
           </div>\n          <div class="word-item">
             <div class="word-info">
@@ -897,7 +909,7 @@
             </div>
             <div class="word-tools">
               <button class="icon-btn" data-speak="community">🔊 發音</button>
-              <button class="icon-btn" data-del-index="7">🗑️</button>
+              <button class="icon-btn" data-del-index="8">🗑️</button>
             </div>
           </div>
         </div>
@@ -913,9 +925,9 @@
       <div class="flashcard-wrapper">
         <div class="fc-filter-row">
           <select id="fc-lesson-select" class="select-box">
-            <option value="all">🌟 全部單字 (8個)</option>
+            <option value="all">🌟 全部單字 (9個)</option>
           </select>
-          <span id="fc-counter">第 1 / 8 個 [單字庫]</span>
+          <span id="fc-counter">第 1 / 9 個 [單字庫]</span>
         </div>
 
         <div id="flashcard" class="flashcard">
@@ -949,7 +961,7 @@
         <div class="quiz-header-card card">
           <div class="quiz-stats">
             <span class="score-badge">🏆 得分: <b id="quiz-score">0</b></span>
-            <span class="count-badge">題目: <b id="quiz-index">1</b> / <b id="quiz-total">8</b></span>
+            <span class="count-badge">題目: <b id="quiz-index">1</b> / <b id="quiz-total">9</b></span>
           </div>
           <div class="quiz-controls-row">
             <div class="quiz-setting-item">
@@ -980,7 +992,7 @@
               <button class="choice-btn" data-en="stranger">stranger</button>
               <button class="choice-btn" data-en="parade">parade</button>
               <button class="choice-btn" data-en="cheerfully">cheerfully</button>
-              <button class="choice-btn" data-en="spare">spare</button>
+              <button class="choice-btn" data-en="splash">splash</button>
             </div>
 
             <form id="quiz-form" class="quiz-spell-form" style="display: none;" onsubmit="return false;">
@@ -1019,11 +1031,11 @@
         <p class="modal-hint">
           直接貼上多行單字，支援常見格式：<br>
           • <code>stranger 陌生人</code><br>
-          • <code>parade: 遊行</code><br>
+          • <code>splash: 戲水</code><br>
           • <code>tourist - 觀光客</code><br>
           • Excel / 試算表直接複製貼上
         </p>
-        <textarea id="batch-import-text" class="batch-textarea" placeholder="stranger 陌生人&#10;parade 遊行&#10;cheerfully 興高采烈的&#10;spare 倖免&#10;respect 尊敬&#10;tourist 觀光客&#10;target 靶子&#10;community 社區"></textarea>
+        <textarea id="batch-import-text" class="batch-textarea" placeholder="stranger 陌生人&#10;parade 遊行&#10;cheerfully 興高采烈的&#10;splash 戲水&#10;spare 倖免&#10;respect 尊敬&#10;tourist 觀光客&#10;target 靶子&#10;community 社區"></textarea>
         
         <div class="batch-options">
           <label><input type="radio" name="batch-mode" value="replace" checked> 覆蓋現有單字</label>
@@ -1042,8 +1054,8 @@
   </div>
 
   <script>
-    const CURRENT_DATA_VERSION = "2026_11_01_user_v4";
-    const DEFAULT_WORDS = [{"en": "stranger", "zh": "陌生人", "lesson": "單字庫"}, {"en": "parade", "zh": "遊行", "lesson": "單字庫"}, {"en": "cheerfully", "zh": "興高采烈的", "lesson": "單字庫"}, {"en": "spare", "zh": "倖免", "lesson": "單字庫"}, {"en": "respect", "zh": "尊敬", "lesson": "單字庫"}, {"en": "tourist", "zh": "觀光客", "lesson": "單字庫"}, {"en": "target", "zh": "靶子", "lesson": "單字庫"}, {"en": "community", "zh": "社區", "lesson": "單字庫"}];
+    const CURRENT_DATA_VERSION = "2026_11_01_user_v5";
+    const DEFAULT_WORDS = [{"en": "stranger", "zh": "陌生人", "lesson": "單字庫"}, {"en": "parade", "zh": "遊行", "lesson": "單字庫"}, {"en": "cheerfully", "zh": "興高采烈的", "lesson": "單字庫"}, {"en": "splash", "zh": "戲水", "lesson": "單字庫"}, {"en": "spare", "zh": "倖免", "lesson": "單字庫"}, {"en": "respect", "zh": "尊敬", "lesson": "單字庫"}, {"en": "tourist", "zh": "觀光客", "lesson": "單字庫"}, {"en": "target", "zh": "靶子", "lesson": "單字庫"}, {"en": "community", "zh": "社區", "lesson": "單字庫"}];
 
     let words = [...DEFAULT_WORDS];
     let currentListFilter = "all";
@@ -1278,7 +1290,7 @@
       });
 
       document.getElementById("btn-quick-sample").addEventListener("click", function() {
-        if (confirm("要重設為初始的 8 個單字嗎？")) {
+        if (confirm("要重設為初始的 9 個單字嗎？")) {
           words = [...DEFAULT_WORDS];
           saveWords();
           updateFilterAndLessonSelects();
