@@ -965,15 +965,16 @@
           <div class="quiz-stats">
             <span class="score-badge">🏆 得分: <b id="quiz-score">0</b></span>
             <span class="streak-badge" id="quiz-streak-badge" style="color: #ea580c; font-weight: 800;">🔥 連勝: <b id="quiz-streak">0</b></span>
-            <span class="mistake-badge" id="quiz-mistake-badge" style="color: #dc2626; font-weight: 700; display: none;">❌ 待加強: <b id="quiz-mistake-count">0</b></span>
-            <span class="count-badge" id="quiz-progress-text">第 1 題 (♾️ 無限)</span>
+            <span class="mistake-badge" id="quiz-mistake-badge" style="color: #dc2626; font-weight: 700; display: none;">❌ 待強化: <b id="quiz-mistake-count">0</b></span>
+            <span class="count-badge" id="quiz-progress-text">🎯 掌握進度: 0 / 9</span>
           </div>
           <div class="quiz-controls-row">
             <div class="quiz-setting-item">
               <label for="quiz-mode-select">模式：</label>
               <select id="quiz-mode-select" class="select-box">
-                <option value="endless" selected>♾️ 無限模式 (不斷出題・錯題重複強化)</option>
-                <option value="standard">📝 標準模式 (各考一次結算)</option>
+                <option value="mastery" selected>🎯 通關模式 (全數答對為止・錯題循環考到會)</option>
+                <option value="endless">♾️ 無限刷題 (永不結束・持續隨機刷題)</option>
+                <option value="standard">📝 一輪模式 (各考一次結算)</option>
               </select>
             </div>
             <div class="quiz-setting-item">
@@ -996,7 +997,7 @@
 
         <div class="quiz-card card">
           <div class="quiz-question-area">
-            <div id="quiz-review-tag" style="display: none; font-size: 0.78rem; font-weight: 800; background: #fee2e2; color: #dc2626; border-radius: 12px; padding: 2px 10px; margin: 0 auto 8px auto; width: fit-content;">⚠️ 錯題複習強化</div>
+            <div id="quiz-review-tag" style="display: none; font-size: 0.78rem; font-weight: 800; background: #fee2e2; color: #dc2626; border-radius: 12px; padding: 2px 10px; margin: 0 auto 8px auto; width: fit-content;">⚠️ 錯題複習 (答對即可掌握)</div>
             <button id="btn-quiz-audio" class="quiz-audio-btn" type="button" style="display: none;">🔊 播放發音</button>
             <h2 id="quiz-question-prompt" class="quiz-prompt">陌生人</h2>
             <p id="quiz-hint-text" class="quiz-hint">請選出正確的英文單字：</p>
@@ -1068,7 +1069,7 @@
   </div>
 
   <script>
-    const CURRENT_DATA_VERSION = "2026_11_01_user_v6";
+    const CURRENT_DATA_VERSION = "2026_11_01_user_v7";
     const DEFAULT_WORDS = [{"en": "stranger", "zh": "陌生人", "lesson": "單字庫"}, {"en": "parade", "zh": "遊行", "lesson": "單字庫"}, {"en": "cheerfully", "zh": "興高采烈的", "lesson": "單字庫"}, {"en": "splash", "zh": "戲水", "lesson": "單字庫"}, {"en": "spare", "zh": "倖免", "lesson": "單字庫"}, {"en": "respect", "zh": "尊敬", "lesson": "單字庫"}, {"en": "tourist", "zh": "觀光客", "lesson": "單字庫"}, {"en": "target", "zh": "靶子", "lesson": "單字庫"}, {"en": "community", "zh": "社區", "lesson": "單字庫"}];
 
     let words = [...DEFAULT_WORDS];
@@ -1076,8 +1077,8 @@
     let currentCardIndex = 0;
     let isCardFlipped = false;
 
-    // 考試系統全域變數
-    let quizMode = "endless"; // "endless" 或 "standard"
+    // 考試系統變數
+    let quizMode = "mastery"; // "mastery" (全數答對為止), "endless" (純無限), "standard" (一輪)
     let quizQueue = [];
     let quizIndex = 0;
     let quizScore = 0;
@@ -1085,9 +1086,10 @@
     let quizMaxStreak = 0;
     let quizTotalAnswered = 0;
     let currentQuizWord = null;
-    let isCurrentQuestionMistakeReview = false;
 
-    // 錯題佇列 (記錄答錯的單字，無限模式下重複出題強化)
+    // 通關模式核心變數
+    let masteredEnWords = new Set();
+    let remainingWords = [];
     let endlessMistakes = [];
 
     function speak(text) {
@@ -1672,7 +1674,7 @@
       speak(current.en);
     }
 
-    // ================= 隨機考試系統 (支援無限模式與錯題重複強化) =================
+    // ================= 隨機考試系統 (全數答對為止通關機制) =================
     function getFilteredQuizWords() {
       const select = document.getElementById("quiz-lesson-select");
       const filter = select ? select.value : "all";
@@ -1754,7 +1756,7 @@
       const retryBox = document.getElementById("quiz-retry-box");
       const modeSelect = document.getElementById("quiz-mode-select");
 
-      quizMode = modeSelect ? modeSelect.value : "endless";
+      quizMode = modeSelect ? modeSelect.value : "mastery";
 
       if (feedbackEl) feedbackEl.style.display = "none";
       if (retryBox) retryBox.style.display = "none";
@@ -1775,6 +1777,8 @@
       quizTotalAnswered = 0;
       endlessMistakes = [];
       currentQuizWord = null;
+      masteredEnWords = new Set();
+      remainingWords = [...pool];
 
       if (quizMode === "standard") {
         quizQueue = [...pool].sort(function() { return Math.random() - 0.5; });
@@ -1786,6 +1790,7 @@
     }
 
     function updateQuizStatsDisplay() {
+      const pool = getFilteredQuizWords();
       document.getElementById("quiz-score").textContent = quizScore;
       const streakEl = document.getElementById("quiz-streak");
       if (streakEl) streakEl.textContent = quizStreak;
@@ -1793,7 +1798,7 @@
       const mistakeBadge = document.getElementById("quiz-mistake-badge");
       const mistakeCountEl = document.getElementById("quiz-mistake-count");
       if (mistakeBadge && mistakeCountEl) {
-        if (quizMode === "endless" && endlessMistakes.length > 0) {
+        if ((quizMode === "mastery" || quizMode === "endless") && endlessMistakes.length > 0) {
           mistakeBadge.style.display = "inline";
           mistakeCountEl.textContent = endlessMistakes.length;
         } else {
@@ -1803,7 +1808,9 @@
 
       const progressEl = document.getElementById("quiz-progress-text");
       if (progressEl) {
-        if (quizMode === "endless") {
+        if (quizMode === "mastery") {
+          progressEl.innerHTML = "🎯 掌握進度: <b>" + masteredEnWords.size + "</b> / <b>" + pool.length + "</b> (第 " + (quizTotalAnswered + 1) + " 題)";
+        } else if (quizMode === "endless") {
           progressEl.innerHTML = "進度: 第 <b>" + (quizTotalAnswered + 1) + "</b> 題 (♾️ 無限)";
         } else {
           progressEl.innerHTML = "題目: <b>" + (quizIndex + 1) + "</b> / <b>" + quizQueue.length + "</b>";
@@ -1853,31 +1860,57 @@
 
       if (quizMode === "standard") {
         if (quizIndex >= quizQueue.length) {
-          alert("🎉 恭喜完成標準測驗！總得分：" + quizScore + " / " + (quizQueue.length * 10));
-          startQuiz();
+          showStandardFinish();
           return;
         }
         currentQuizWord = quizQueue[quizIndex];
-        isCurrentQuestionMistakeReview = false;
         if (reviewTag) reviewTag.style.display = "none";
-      } else {
-        // ===== 無限模式 (錯題重複強化演算法) =====
-        // 若有錯題，高機率 (65%~100%) 抽錯題重複出題
+      } else if (quizMode === "mastery") {
+        // ===== 通關模式 (全數答對為止) =====
+        if (remainingWords.length === 0) {
+          showMasteryFinish();
+          return;
+        }
+
+        // 優先抽考答錯過且尚未掌握的單字
         const eligibleMistakes = endlessMistakes.filter(function(w) {
-          return !currentQuizWord || w.en !== currentQuizWord.en;
+          return remainingWords.some(function(rw) { return rw.en === w.en; }) &&
+                 (!currentQuizWord || remainingWords.length === 1 || w.en !== currentQuizWord.en);
+        });
+
+        if (eligibleMistakes.length > 0 && (Math.random() < 0.75 || eligibleMistakes.length >= 2)) {
+          currentQuizWord = eligibleMistakes[Math.floor(Math.random() * eligibleMistakes.length)];
+          if (reviewTag) {
+            reviewTag.style.display = "block";
+            reviewTag.textContent = "⚠️ 錯題強化 (答對即可掌握！)";
+          }
+        } else {
+          // 從剩餘未掌握單字中挑選
+          const otherRemaining = remainingWords.filter(function(w) {
+            return !currentQuizWord || remainingWords.length === 1 || w.en !== currentQuizWord.en;
+          });
+          const candidates = otherRemaining.length > 0 ? otherRemaining : remainingWords;
+          currentQuizWord = candidates[Math.floor(Math.random() * candidates.length)];
+          if (reviewTag) reviewTag.style.display = "none";
+        }
+      } else {
+        // ===== 純無限刷題模式 =====
+        const eligibleMistakes = endlessMistakes.filter(function(w) {
+          return !currentQuizWord || pool.length === 1 || w.en !== currentQuizWord.en;
         });
 
         if (eligibleMistakes.length > 0 && (Math.random() < 0.65 || eligibleMistakes.length >= 3)) {
           currentQuizWord = eligibleMistakes[Math.floor(Math.random() * eligibleMistakes.length)];
-          isCurrentQuestionMistakeReview = true;
-          if (reviewTag) reviewTag.style.display = "block";
+          if (reviewTag) {
+            reviewTag.style.display = "block";
+            reviewTag.textContent = "⚠️ 錯題複習強化";
+          }
         } else {
           const otherWords = pool.filter(function(w) {
-            return !currentQuizWord || w.en !== currentQuizWord.en;
+            return !currentQuizWord || pool.length === 1 || w.en !== currentQuizWord.en;
           });
           const candidates = otherWords.length > 0 ? otherWords : pool;
           currentQuizWord = candidates[Math.floor(Math.random() * candidates.length)];
-          isCurrentQuestionMistakeReview = false;
           if (reviewTag) reviewTag.style.display = "none";
         }
       }
@@ -1977,8 +2010,17 @@
 
       let msg = "✅ 答對了！太棒了！ (" + currentQuizWord.en + " = " + currentQuizWord.zh + ")";
 
-      if (quizMode === "endless") {
-        // 若答對的是錯題，則從錯題佇列中移除 (克服弱點！)
+      if (quizMode === "mastery") {
+        masteredEnWords.add(currentQuizWord.en);
+        remainingWords = remainingWords.filter(function(w) { return w.en !== currentQuizWord.en; });
+        endlessMistakes = endlessMistakes.filter(function(w) { return w.en !== currentQuizWord.en; });
+
+        const pool = getFilteredQuizWords();
+        msg = "🎯 掌握成功！進度：" + masteredEnWords.size + " / " + pool.length + " (" + currentQuizWord.en + " = " + currentQuizWord.zh + ")";
+        if (remainingWords.length === 0) {
+          msg = "🎉 太神了！所有單字已全數掌握通關！";
+        }
+      } else if (quizMode === "endless") {
         const mistakeIdx = endlessMistakes.findIndex(function(w) { return w.en === currentQuizWord.en; });
         if (mistakeIdx !== -1) {
           endlessMistakes.splice(mistakeIdx, 1);
@@ -1995,8 +2037,7 @@
       quizStreak = 0;
       speak(currentQuizWord.en);
 
-      if (quizMode === "endless") {
-        // 將錯題記錄到錯題庫，稍後重複考出
+      if (quizMode === "mastery" || quizMode === "endless") {
         if (!endlessMistakes.some(function(w) { return w.en === currentQuizWord.en; })) {
           endlessMistakes.push(currentQuizWord);
         }
@@ -2078,7 +2119,7 @@
       const retryErrorHint = document.getElementById("retry-error-hint");
       const nextBtn = document.getElementById("btn-quiz-next");
 
-      const repeatHint = (quizMode === "endless") ? " (已加入強化佇列，稍後將再次複習)" : "";
+      const repeatHint = (quizMode === "mastery" || quizMode === "endless") ? " (尚未掌握，稍後將再次測驗直到答對)" : "";
       msgEl.className = "feedback-message feedback-wrong";
       msgEl.innerHTML = "❌ 答錯了！正確答案是：<b style=\"color: #b91c1c; font-size: 1.25rem;\">" + escapeHtml(currentQuizWord.en) + "</b> (" + escapeHtml(currentQuizWord.zh) + ")" + repeatHint;
 
@@ -2129,18 +2170,50 @@
       quizTotalAnswered++;
       if (quizMode === "standard") {
         quizIndex++;
+        loadQuizQuestion();
+      } else if (quizMode === "mastery") {
+        if (remainingWords.length === 0) {
+          showMasteryFinish();
+        } else {
+          loadQuizQuestion();
+        }
+      } else {
+        loadQuizQuestion();
       }
-      loadQuizQuestion();
+    }
+
+    function showMasteryFinish() {
+      const pool = getFilteredQuizWords();
+      const accuracy = Math.round((pool.length / Math.max(quizTotalAnswered, pool.length)) * 100);
+      const msg = "🎉【恭喜通關！全部單字皆已掌握！】\n\n" +
+        "• 通關單字數：" + pool.length + " 個單字\n" +
+        "• 總作答題數：" + quizTotalAnswered + " 題\n" +
+        "• 累計得分：" + quizScore + " 分\n" +
+        "• 最高連勝：" + quizMaxStreak + " 題\n\n" +
+        "所有答錯的單字均已重複考出並成功掌握！\n" +
+        "要再挑戰一輪強化記憶嗎？";
+
+      alert(msg);
+      startQuiz();
+    }
+
+    function showStandardFinish() {
+      alert("🎉 恭喜完成標準測驗！總得分：" + quizScore + " / " + (quizQueue.length * 10));
+      startQuiz();
     }
 
     function finishQuizAndShowSummary() {
+      const pool = getFilteredQuizWords();
+      const modeName = (quizMode === "mastery") ? "🎯 通關模式 (全數答對為止)" : ((quizMode === "endless") ? "♾️ 無限刷題" : "📝 標準模式");
+      const unmastered = (quizMode === "mastery") ? remainingWords.length : endlessMistakes.length;
+      
       const msg = "📊 【測驗成果結算】\n\n" +
-        "• 測驗模式：" + (quizMode === "endless" ? "♾️ 無限模式" : "📝 標準模式") + "\n" +
+        "• 測驗模式：" + modeName + "\n" +
         "• 總測驗題數：" + quizTotalAnswered + " 題\n" +
         "• 累計得分：" + quizScore + " 分\n" +
         "• 最高連續答對：" + quizMaxStreak + " 題\n" +
-        "• 目前剩餘待強化錯題：" + endlessMistakes.length + " 個" +
-        (endlessMistakes.length > 0 ? ("\n  (" + endlessMistakes.map(function(w){return w.en;}).join(", ") + ")") : "\n  (太棒了！無未克服錯題！)");
+        "• 剩餘未掌握/未克服單字：" + unmastered + " 個" +
+        (unmastered > 0 ? ("\n  (" + (quizMode === "mastery" ? remainingWords : endlessMistakes).map(function(w){return w.en;}).join(", ") + ")") : "\n  (太棒了！無未掌握單字！)");
 
       alert(msg);
       if (confirm("要重新開啟新一輪測驗嗎？")) {
