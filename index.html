@@ -489,7 +489,10 @@
     .quiz-stats {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       margin-bottom: 0.85rem;
+      flex-wrap: wrap;
+      gap: 6px;
     }
 
     .score-badge {
@@ -499,7 +502,7 @@
     }
 
     .count-badge {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
       font-weight: 700;
     }
@@ -961,9 +964,18 @@
         <div class="quiz-header-card card">
           <div class="quiz-stats">
             <span class="score-badge">🏆 得分: <b id="quiz-score">0</b></span>
-            <span class="count-badge">題目: <b id="quiz-index">1</b> / <b id="quiz-total">9</b></span>
+            <span class="streak-badge" id="quiz-streak-badge" style="color: #ea580c; font-weight: 800;">🔥 連勝: <b id="quiz-streak">0</b></span>
+            <span class="mistake-badge" id="quiz-mistake-badge" style="color: #dc2626; font-weight: 700; display: none;">❌ 待加強: <b id="quiz-mistake-count">0</b></span>
+            <span class="count-badge" id="quiz-progress-text">第 1 題 (♾️ 無限)</span>
           </div>
           <div class="quiz-controls-row">
+            <div class="quiz-setting-item">
+              <label for="quiz-mode-select">模式：</label>
+              <select id="quiz-mode-select" class="select-box">
+                <option value="endless" selected>♾️ 無限模式 (不斷出題・錯題重複強化)</option>
+                <option value="standard">📝 標準模式 (各考一次結算)</option>
+              </select>
+            </div>
             <div class="quiz-setting-item">
               <label for="quiz-lesson-select">考試範圍：</label>
               <select id="quiz-lesson-select" class="select-box">
@@ -984,6 +996,7 @@
 
         <div class="quiz-card card">
           <div class="quiz-question-area">
+            <div id="quiz-review-tag" style="display: none; font-size: 0.78rem; font-weight: 800; background: #fee2e2; color: #dc2626; border-radius: 12px; padding: 2px 10px; margin: 0 auto 8px auto; width: fit-content;">⚠️ 錯題複習強化</div>
             <button id="btn-quiz-audio" class="quiz-audio-btn" type="button" style="display: none;">🔊 播放發音</button>
             <h2 id="quiz-question-prompt" class="quiz-prompt">陌生人</h2>
             <p id="quiz-hint-text" class="quiz-hint">請選出正確的英文單字：</p>
@@ -1014,6 +1027,7 @@
             </div>
 
             <button id="btn-quiz-next" class="btn btn-primary" style="width: 100%; padding: 0.85rem;">下一題 ➡️ (Enter)</button>
+            <button id="btn-quiz-finish-early" class="btn btn-subtle" style="width: 100%; margin-top: 10px; font-size: 0.85rem;">📊 結算本次練習成果</button>
           </div>
         </div>
       </div>
@@ -1054,7 +1068,7 @@
   </div>
 
   <script>
-    const CURRENT_DATA_VERSION = "2026_11_01_user_v5";
+    const CURRENT_DATA_VERSION = "2026_11_01_user_v6";
     const DEFAULT_WORDS = [{"en": "stranger", "zh": "陌生人", "lesson": "單字庫"}, {"en": "parade", "zh": "遊行", "lesson": "單字庫"}, {"en": "cheerfully", "zh": "興高采烈的", "lesson": "單字庫"}, {"en": "splash", "zh": "戲水", "lesson": "單字庫"}, {"en": "spare", "zh": "倖免", "lesson": "單字庫"}, {"en": "respect", "zh": "尊敬", "lesson": "單字庫"}, {"en": "tourist", "zh": "觀光客", "lesson": "單字庫"}, {"en": "target", "zh": "靶子", "lesson": "單字庫"}, {"en": "community", "zh": "社區", "lesson": "單字庫"}];
 
     let words = [...DEFAULT_WORDS];
@@ -1062,10 +1076,19 @@
     let currentCardIndex = 0;
     let isCardFlipped = false;
 
+    // 考試系統全域變數
+    let quizMode = "endless"; // "endless" 或 "standard"
     let quizQueue = [];
     let quizIndex = 0;
     let quizScore = 0;
+    let quizStreak = 0;
+    let quizMaxStreak = 0;
+    let quizTotalAnswered = 0;
     let currentQuizWord = null;
+    let isCurrentQuestionMistakeReview = false;
+
+    // 錯題佇列 (記錄答錯的單字，無限模式下重複出題強化)
+    let endlessMistakes = [];
 
     function speak(text) {
       if (!text) return;
@@ -1649,6 +1672,7 @@
       speak(current.en);
     }
 
+    // ================= 隨機考試系統 (支援無限模式與錯題重複強化) =================
     function getFilteredQuizWords() {
       const select = document.getElementById("quiz-lesson-select");
       const filter = select ? select.value : "all";
@@ -1660,8 +1684,10 @@
       const form = document.getElementById("quiz-form");
       const btnNext = document.getElementById("btn-quiz-next");
       const btnAudio = document.getElementById("btn-quiz-audio");
+      const btnFinishEarly = document.getElementById("btn-quiz-finish-early");
       const quizTypeSelect = document.getElementById("quiz-type");
       const quizLessonSelect = document.getElementById("quiz-lesson-select");
+      const quizModeSelect = document.getElementById("quiz-mode-select");
 
       const retryBtn = document.getElementById("btn-quiz-retry-submit");
       const retryInput = document.getElementById("quiz-retry-input");
@@ -1671,6 +1697,12 @@
       btnAudio.addEventListener("click", function() {
         if (currentQuizWord) speak(currentQuizWord.en);
       });
+
+      if (btnFinishEarly) {
+        btnFinishEarly.addEventListener("click", function() {
+          finishQuizAndShowSummary();
+        });
+      }
 
       if (retryBtn) retryBtn.addEventListener("click", submitRetry);
       if (retryInput) {
@@ -1682,8 +1714,21 @@
         });
       }
 
-      quizTypeSelect.addEventListener("change", startQuiz);
-      if (quizLessonSelect) quizLessonSelect.addEventListener("change", startQuiz);
+      if (quizModeSelect) {
+        quizModeSelect.addEventListener("change", function() {
+          startQuiz();
+        });
+      }
+
+      quizTypeSelect.addEventListener("change", function() {
+        startQuiz();
+      });
+
+      if (quizLessonSelect) {
+        quizLessonSelect.addEventListener("change", function() {
+          startQuiz();
+        });
+      }
 
       const choiceBtns = document.querySelectorAll(".choice-btn");
       choiceBtns.forEach(function(btn) {
@@ -1707,6 +1752,9 @@
       const choicesEl = document.getElementById("quiz-choices");
       const feedbackEl = document.getElementById("quiz-feedback");
       const retryBox = document.getElementById("quiz-retry-box");
+      const modeSelect = document.getElementById("quiz-mode-select");
+
+      quizMode = modeSelect ? modeSelect.value : "endless";
 
       if (feedbackEl) feedbackEl.style.display = "none";
       if (retryBox) retryBox.style.display = "none";
@@ -1718,18 +1766,49 @@
         if (formEl) formEl.style.display = "none";
         if (choicesEl) choicesEl.style.display = "none";
         document.getElementById("quiz-score").textContent = "0";
-        document.getElementById("quiz-total").textContent = "0";
         return;
       }
 
-      quizQueue = [...pool].sort(function() { return Math.random() - 0.5; });
-      quizIndex = 0;
       quizScore = 0;
+      quizStreak = 0;
+      quizMaxStreak = 0;
+      quizTotalAnswered = 0;
+      endlessMistakes = [];
+      currentQuizWord = null;
 
-      document.getElementById("quiz-score").textContent = quizScore;
-      document.getElementById("quiz-total").textContent = quizQueue.length;
+      if (quizMode === "standard") {
+        quizQueue = [...pool].sort(function() { return Math.random() - 0.5; });
+        quizIndex = 0;
+      }
 
+      updateQuizStatsDisplay();
       loadQuizQuestion();
+    }
+
+    function updateQuizStatsDisplay() {
+      document.getElementById("quiz-score").textContent = quizScore;
+      const streakEl = document.getElementById("quiz-streak");
+      if (streakEl) streakEl.textContent = quizStreak;
+
+      const mistakeBadge = document.getElementById("quiz-mistake-badge");
+      const mistakeCountEl = document.getElementById("quiz-mistake-count");
+      if (mistakeBadge && mistakeCountEl) {
+        if (quizMode === "endless" && endlessMistakes.length > 0) {
+          mistakeBadge.style.display = "inline";
+          mistakeCountEl.textContent = endlessMistakes.length;
+        } else {
+          mistakeBadge.style.display = "none";
+        }
+      }
+
+      const progressEl = document.getElementById("quiz-progress-text");
+      if (progressEl) {
+        if (quizMode === "endless") {
+          progressEl.innerHTML = "進度: 第 <b>" + (quizTotalAnswered + 1) + "</b> 題 (♾️ 無限)";
+        } else {
+          progressEl.innerHTML = "題目: <b>" + (quizIndex + 1) + "</b> / <b>" + quizQueue.length + "</b>";
+        }
+      }
     }
 
     function generateChoices(correctZh) {
@@ -1767,18 +1846,45 @@
     }
 
     function loadQuizQuestion() {
-      if (quizIndex >= quizQueue.length) {
-        alert("🎉 恭喜完成測驗！總得分：" + quizScore + " / " + (quizQueue.length * 10));
-        startQuiz();
-        return;
+      const pool = getFilteredQuizWords();
+      if (pool.length === 0) return;
+
+      const reviewTag = document.getElementById("quiz-review-tag");
+
+      if (quizMode === "standard") {
+        if (quizIndex >= quizQueue.length) {
+          alert("🎉 恭喜完成標準測驗！總得分：" + quizScore + " / " + (quizQueue.length * 10));
+          startQuiz();
+          return;
+        }
+        currentQuizWord = quizQueue[quizIndex];
+        isCurrentQuestionMistakeReview = false;
+        if (reviewTag) reviewTag.style.display = "none";
+      } else {
+        // ===== 無限模式 (錯題重複強化演算法) =====
+        // 若有錯題，高機率 (65%~100%) 抽錯題重複出題
+        const eligibleMistakes = endlessMistakes.filter(function(w) {
+          return !currentQuizWord || w.en !== currentQuizWord.en;
+        });
+
+        if (eligibleMistakes.length > 0 && (Math.random() < 0.65 || eligibleMistakes.length >= 3)) {
+          currentQuizWord = eligibleMistakes[Math.floor(Math.random() * eligibleMistakes.length)];
+          isCurrentQuestionMistakeReview = true;
+          if (reviewTag) reviewTag.style.display = "block";
+        } else {
+          const otherWords = pool.filter(function(w) {
+            return !currentQuizWord || w.en !== currentQuizWord.en;
+          });
+          const candidates = otherWords.length > 0 ? otherWords : pool;
+          currentQuizWord = candidates[Math.floor(Math.random() * candidates.length)];
+          isCurrentQuestionMistakeReview = false;
+          if (reviewTag) reviewTag.style.display = "none";
+        }
       }
 
-      currentQuizWord = quizQueue[quizIndex];
+      updateQuizStatsDisplay();
+
       const type = document.getElementById("quiz-type").value;
-
-      document.getElementById("quiz-index").textContent = quizIndex + 1;
-      document.getElementById("quiz-total").textContent = quizQueue.length;
-
       const promptEl = document.getElementById("quiz-question-prompt");
       const hintEl = document.getElementById("quiz-hint-text");
       const audioBtn = document.getElementById("btn-quiz-audio");
@@ -1862,6 +1968,44 @@
       return str.toLowerCase().replace(/[^a-z0-9]/g, "");
     }
 
+    function handleCorrectAnswer() {
+      playTone(true);
+      quizScore += 10;
+      quizStreak++;
+      if (quizStreak > quizMaxStreak) quizMaxStreak = quizStreak;
+      speak(currentQuizWord.en);
+
+      let msg = "✅ 答對了！太棒了！ (" + currentQuizWord.en + " = " + currentQuizWord.zh + ")";
+
+      if (quizMode === "endless") {
+        // 若答對的是錯題，則從錯題佇列中移除 (克服弱點！)
+        const mistakeIdx = endlessMistakes.findIndex(function(w) { return w.en === currentQuizWord.en; });
+        if (mistakeIdx !== -1) {
+          endlessMistakes.splice(mistakeIdx, 1);
+          msg = "🎯 克服弱點成功！已熟記此單字！ (" + currentQuizWord.en + " = " + currentQuizWord.zh + ")";
+        }
+      }
+
+      showCorrectFeedback(msg);
+      updateQuizStatsDisplay();
+    }
+
+    function handleWrongAnswer() {
+      playTone(false);
+      quizStreak = 0;
+      speak(currentQuizWord.en);
+
+      if (quizMode === "endless") {
+        // 將錯題記錄到錯題庫，稍後重複考出
+        if (!endlessMistakes.some(function(w) { return w.en === currentQuizWord.en; })) {
+          endlessMistakes.push(currentQuizWord);
+        }
+      }
+
+      showForcedRetryPrompt();
+      updateQuizStatsDisplay();
+    }
+
     function selectEnglishChoice(selectedEn, clickedBtn) {
       const choiceBtns = document.querySelectorAll(".choice-btn");
       choiceBtns.forEach(function(b) { b.disabled = true; });
@@ -1870,19 +2014,12 @@
                         (normalizeText(selectedEn) === normalizeText(currentQuizWord.en));
 
       if (isCorrect) {
-        playTone(true);
-        quizScore += 10;
         clickedBtn.classList.add("choice-correct");
-        speak(currentQuizWord.en);
-        showCorrectFeedback();
+        handleCorrectAnswer();
       } else {
-        playTone(false);
         clickedBtn.classList.add("choice-wrong");
-        speak(currentQuizWord.en);
-        showForcedRetryPrompt();
+        handleWrongAnswer();
       }
-
-      document.getElementById("quiz-score").textContent = quizScore;
     }
 
     function selectChineseChoice(selectedZh, clickedBtn) {
@@ -1892,19 +2029,12 @@
       const isCorrect = (selectedZh === currentQuizWord.zh);
 
       if (isCorrect) {
-        playTone(true);
-        quizScore += 10;
         clickedBtn.classList.add("choice-correct");
-        speak(currentQuizWord.en);
-        showCorrectFeedback();
+        handleCorrectAnswer();
       } else {
-        playTone(false);
         clickedBtn.classList.add("choice-wrong");
-        speak(currentQuizWord.en);
-        showForcedRetryPrompt();
+        handleWrongAnswer();
       }
-
-      document.getElementById("quiz-score").textContent = quizScore;
     }
 
     function submitQuizAnswer() {
@@ -1920,20 +2050,13 @@
                       (normalizeText(userTyped) === normalizeText(strippedParens));
 
       if (isMatch) {
-        playTone(true);
-        quizScore += 10;
-        speak(currentQuizWord.en);
-        showCorrectFeedback();
+        handleCorrectAnswer();
       } else {
-        playTone(false);
-        speak(currentQuizWord.en);
-        showForcedRetryPrompt();
+        handleWrongAnswer();
       }
-
-      document.getElementById("quiz-score").textContent = quizScore;
     }
 
-    function showCorrectFeedback() {
+    function showCorrectFeedback(customMsg) {
       const feedbackEl = document.getElementById("quiz-feedback");
       const msgEl = document.getElementById("feedback-message");
       const retryBox = document.getElementById("quiz-retry-box");
@@ -1941,7 +2064,7 @@
 
       if (retryBox) retryBox.style.display = "none";
       msgEl.className = "feedback-message feedback-correct";
-      msgEl.textContent = "✅ 答對了！太棒了！ (" + currentQuizWord.en + " = " + currentQuizWord.zh + ")";
+      msgEl.textContent = customMsg || ("✅ 答對了！ (" + currentQuizWord.en + " = " + currentQuizWord.zh + ")");
       feedbackEl.style.display = "block";
       nextBtn.style.display = "block";
       nextBtn.focus();
@@ -1955,8 +2078,9 @@
       const retryErrorHint = document.getElementById("retry-error-hint");
       const nextBtn = document.getElementById("btn-quiz-next");
 
+      const repeatHint = (quizMode === "endless") ? " (已加入強化佇列，稍後將再次複習)" : "";
       msgEl.className = "feedback-message feedback-wrong";
-      msgEl.innerHTML = "❌ 答錯了！正確答案是：<b style=\"color: #b91c1c; font-size: 1.25rem;\">" + escapeHtml(currentQuizWord.en) + "</b> (" + escapeHtml(currentQuizWord.zh) + ")";
+      msgEl.innerHTML = "❌ 答錯了！正確答案是：<b style=\"color: #b91c1c; font-size: 1.25rem;\">" + escapeHtml(currentQuizWord.en) + "</b> (" + escapeHtml(currentQuizWord.zh) + ")" + repeatHint;
 
       nextBtn.style.display = "none";
       retryBox.style.display = "block";
@@ -2002,8 +2126,26 @@
     }
 
     function nextQuizQuestion() {
-      quizIndex++;
+      quizTotalAnswered++;
+      if (quizMode === "standard") {
+        quizIndex++;
+      }
       loadQuizQuestion();
+    }
+
+    function finishQuizAndShowSummary() {
+      const msg = "📊 【測驗成果結算】\n\n" +
+        "• 測驗模式：" + (quizMode === "endless" ? "♾️ 無限模式" : "📝 標準模式") + "\n" +
+        "• 總測驗題數：" + quizTotalAnswered + " 題\n" +
+        "• 累計得分：" + quizScore + " 分\n" +
+        "• 最高連續答對：" + quizMaxStreak + " 題\n" +
+        "• 目前剩餘待強化錯題：" + endlessMistakes.length + " 個" +
+        (endlessMistakes.length > 0 ? ("\n  (" + endlessMistakes.map(function(w){return w.en;}).join(", ") + ")") : "\n  (太棒了！無未克服錯題！)");
+
+      alert(msg);
+      if (confirm("要重新開啟新一輪測驗嗎？")) {
+        startQuiz();
+      }
     }
 
     function escapeHtml(str) {
