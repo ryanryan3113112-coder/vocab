@@ -302,6 +302,17 @@
       flex-wrap: wrap;
     }
 
+    .word-num-badge {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 800;
+      background: #e2e8f0;
+      color: #334155;
+      padding: 1px 6px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
     .word-en {
       font-size: 1.05rem;
       font-weight: 700;
@@ -355,6 +366,33 @@
       flex-wrap: wrap;
     }
 
+    .range-input {
+      width: 60px;
+      padding: 0.35rem 0.5rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-align: center;
+      outline: none;
+      background: #ffffff;
+    }
+
+    .range-input:focus {
+      border-color: var(--primary);
+    }
+
+    .custom-range-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 6px;
+      background: #f1f5f9;
+      padding: 6px 12px;
+      border-radius: 10px;
+    }
+
     .flashcard-wrapper {
       display: flex;
       flex-direction: column;
@@ -363,6 +401,13 @@
     }
 
     .fc-filter-row {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 6px;
+    }
+
+    .fc-filter-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -524,6 +569,7 @@
       font-size: 0.85rem;
       font-weight: 700;
       color: var(--text-muted);
+      flex-shrink: 0;
     }
 
     .quiz-setting-item .select-box {
@@ -802,13 +848,17 @@
         </h2>
 
         <div class="lesson-filter-bar">
-          <button class="filter-pill active" data-lesson="all">🌟 全部 (<span id="count-all">16</span>)</button>
+          <button class="filter-pill active" data-filter="all">🌟 全部 (<span id="count-all">16</span>)</button>
+          <button class="filter-pill" data-filter="range:1-5">📘 1 ~ 5 (5個)</button>
+          <button class="filter-pill" data-filter="range:5-10">📗 5 ~ 10 (6個)</button>
+          <button class="filter-pill" data-filter="range:10-16">📙 10 ~ 16 (7個)</button>
         </div>
 
         <div id="word-list-container" class="word-list">
           <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
+                <span class="word-num-badge">#1</span>
                 <span class="lesson-badge badge-custom">單字庫</span>
                 <span class="word-en">plastic</span>
               </div>
@@ -821,6 +871,7 @@
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
+                <span class="word-num-badge">#2</span>
                 <span class="lesson-badge badge-custom">單字庫</span>
                 <span class="word-en">convenience</span>
               </div>
@@ -833,6 +884,7 @@
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
+                <span class="word-num-badge">#3</span>
                 <span class="lesson-badge badge-custom">單字庫</span>
                 <span class="word-en">eagerly</span>
               </div>
@@ -845,6 +897,7 @@
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
+                <span class="word-num-badge">#4</span>
                 <span class="lesson-badge badge-custom">單字庫</span>
                 <span class="word-en">surround</span>
               </div>
@@ -857,6 +910,7 @@
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
+                <span class="word-num-badge">#5</span>
                 <span class="lesson-badge badge-custom">單字庫</span>
                 <span class="word-en">drift</span>
               </div>
@@ -869,6 +923,7 @@
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
+                <span class="word-num-badge">#6</span>
                 <span class="lesson-badge badge-custom">單字庫</span>
                 <span class="word-en">envy</span>
               </div>
@@ -881,6 +936,7 @@
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
+                <span class="word-num-badge">#7</span>
                 <span class="lesson-badge badge-custom">單字庫</span>
                 <span class="word-en">crowded</span>
               </div>
@@ -893,6 +949,7 @@
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
+                <span class="word-num-badge">#8</span>
                 <span class="lesson-badge badge-custom">單字庫</span>
                 <span class="word-en">obviously</span>
               </div>
@@ -905,6 +962,7 @@
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
+                <span class="word-num-badge">#9</span>
                 <span class="lesson-badge badge-custom">單字庫</span>
                 <span class="word-en">product</span>
               </div>
@@ -917,6 +975,7 @@
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
+                <span class="word-num-badge">#10</span>
                 <span class="lesson-badge badge-custom">單字庫</span>
                 <span class="word-en">consume</span>
               </div>
@@ -929,6 +988,7 @@
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
+                <span class="word-num-badge">#11</span>
                 <span class="lesson-badge badge-custom">單字庫</span>
                 <span class="word-en">poisonous</span>
               </div>
@@ -941,6 +1001,7 @@
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
+                <span class="word-num-badge">#12</span>
                 <span class="lesson-badge badge-custom">單字庫</span>
                 <span class="word-en">substance</span>
               </div>
@@ -953,6 +1014,7 @@
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
+                <span class="word-num-badge">#13</span>
                 <span class="lesson-badge badge-custom">單字庫</span>
                 <span class="word-en">recycling</span>
               </div>
@@ -965,6 +1027,7 @@
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
+                <span class="word-num-badge">#14</span>
                 <span class="lesson-badge badge-custom">單字庫</span>
                 <span class="word-en">harm</span>
               </div>
@@ -977,6 +1040,7 @@
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
+                <span class="word-num-badge">#15</span>
                 <span class="lesson-badge badge-custom">單字庫</span>
                 <span class="word-en">environment</span>
               </div>
@@ -989,6 +1053,7 @@
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
+                <span class="word-num-badge">#16</span>
                 <span class="lesson-badge badge-custom">單字庫</span>
                 <span class="word-en">properly</span>
               </div>
@@ -1011,10 +1076,24 @@
     <main id="tab-cards" class="tab-content">
       <div class="flashcard-wrapper">
         <div class="fc-filter-row">
-          <select id="fc-lesson-select" class="select-box">
-            <option value="all">🌟 全部單字 (16個)</option>
-          </select>
-          <span id="fc-counter">第 1 / 16 個 [單字庫]</span>
+          <div class="fc-filter-header">
+            <select id="fc-lesson-select" class="select-box" style="flex: 1;">
+              <option value="all">🌟 全部單字 (1 ~ 16)</option>
+              <option value="range:1-5">📘 第 1 ~ 5 個</option>
+              <option value="range:5-10">📗 第 5 ~ 10 個</option>
+              <option value="range:10-16">📙 第 10 ~ 16 個</option>
+              <option value="custom">⚙️ 自訂範圍...</option>
+            </select>
+            <span id="fc-counter">第 1 / 16 個</span>
+          </div>
+          <div id="fc-custom-range-row" class="custom-range-row" style="display: none;">
+            <span>從第</span>
+            <input type="number" id="fc-range-start" class="range-input" value="1" min="1" max="16">
+            <span>到第</span>
+            <input type="number" id="fc-range-end" class="range-input" value="5" min="1" max="16">
+            <span>個</span>
+            <button id="btn-apply-fc-range" class="btn btn-primary" style="padding: 0.35rem 0.75rem; font-size: 0.82rem;">套用</button>
+          </div>
         </div>
 
         <div id="flashcard" class="flashcard">
@@ -1054,7 +1133,7 @@
           </div>
           <div class="quiz-controls-row">
             <div class="quiz-setting-item">
-              <label for="quiz-mode-select">模式：</label>
+              <label for="quiz-mode-select">測驗模式：</label>
               <select id="quiz-mode-select" class="select-box">
                 <option value="mastery" selected>🎯 通關模式 (全數答對為止・錯題循環考到會)</option>
                 <option value="endless">♾️ 無限刷題 (永不結束・持續隨機刷題)</option>
@@ -1064,8 +1143,22 @@
             <div class="quiz-setting-item">
               <label for="quiz-lesson-select">考試範圍：</label>
               <select id="quiz-lesson-select" class="select-box">
-                <option value="all">🌟 全部單字</option>
+                <option value="all">🌟 全部單字 (1 ~ 16)</option>
+                <option value="range:1-5">📘 第 1 ~ 5 題 (plastic ~ drift)</option>
+                <option value="range:5-10">📗 第 5 ~ 10 題 (drift ~ consume)</option>
+                <option value="range:10-16">📙 第 10 ~ 16 題 (consume ~ properly)</option>
+                <option value="range:6-10">📗 第 6 ~ 10 題 (envy ~ consume)</option>
+                <option value="range:11-16">📙 第 11 ~ 16 題 (poisonous ~ properly)</option>
+                <option value="custom">⚙️ 自訂範圍...</option>
               </select>
+            </div>
+            <div id="quiz-custom-range-row" class="custom-range-row" style="display: none;">
+              <span>從第</span>
+              <input type="number" id="quiz-range-start" class="range-input" value="1" min="1" max="16">
+              <span>到第</span>
+              <input type="number" id="quiz-range-end" class="range-input" value="5" min="1" max="16">
+              <span>題</span>
+              <button id="btn-apply-quiz-range" class="btn btn-primary" style="padding: 0.35rem 0.75rem; font-size: 0.82rem;">套用範圍</button>
             </div>
             <div class="quiz-setting-item">
               <label for="quiz-type">題型：</label>
@@ -1153,7 +1246,7 @@
   </div>
 
   <script>
-    const CURRENT_DATA_VERSION = "2026_11_02_user_v8";
+    const CURRENT_DATA_VERSION = "2026_11_02_user_v9";
     const DEFAULT_WORDS = [{"en": "plastic", "zh": "塑膠（製）的", "lesson": "單字庫"}, {"en": "convenience", "zh": "便利", "lesson": "單字庫"}, {"en": "eagerly", "zh": "渴望地", "lesson": "單字庫"}, {"en": "surround", "zh": "環繞", "lesson": "單字庫"}, {"en": "drift", "zh": "漂流", "lesson": "單字庫"}, {"en": "envy", "zh": "羨慕", "lesson": "單字庫"}, {"en": "crowded", "zh": "擠滿的；擁擠的", "lesson": "單字庫"}, {"en": "obviously", "zh": "顯然", "lesson": "單字庫"}, {"en": "product", "zh": "產品", "lesson": "單字庫"}, {"en": "consume", "zh": "吃喝；消耗", "lesson": "單字庫"}, {"en": "poisonous", "zh": "有毒的", "lesson": "單字庫"}, {"en": "substance", "zh": "物質", "lesson": "單字庫"}, {"en": "recycling", "zh": "回收", "lesson": "單字庫"}, {"en": "harm", "zh": "傷害", "lesson": "單字庫"}, {"en": "environment", "zh": "自然環境", "lesson": "單字庫"}, {"en": "properly", "zh": "適當地", "lesson": "單字庫"}];
 
     let words = [...DEFAULT_WORDS];
@@ -1161,8 +1254,17 @@
     let currentCardIndex = 0;
     let isCardFlipped = false;
 
+    // 單字卡範圍設定
+    let fcRangeType = "all";
+    let fcCustomStart = 1;
+    let fcCustomEnd = 5;
+
     // 考試系統變數
     let quizMode = "mastery"; // "mastery" (全數答對為止), "endless" (純無限), "standard" (一輪)
+    let quizRangeType = "all";
+    let quizCustomStart = 1;
+    let quizCustomEnd = 5;
+
     let quizQueue = [];
     let quizIndex = 0;
     let quizScore = 0;
@@ -1354,6 +1456,30 @@
       return "badge-custom";
     }
 
+    // 核心範圍過濾函式
+    function getWordsByRange(rangeType, customStart, customEnd) {
+      if (words.length === 0) return [];
+      if (!rangeType || rangeType === "all") return words;
+
+      if (rangeType.startsWith("range:")) {
+        const parts = rangeType.replace("range:", "").split("-");
+        const s = Math.max(1, parseInt(parts[0], 10));
+        const e = Math.min(words.length, parseInt(parts[1], 10));
+        return words.slice(s - 1, e);
+      }
+
+      if (rangeType === "custom") {
+        const s = Math.max(1, Math.min(parseInt(customStart, 10) || 1, words.length));
+        const e = Math.max(1, Math.min(parseInt(customEnd, 10) || words.length, words.length));
+        const from = Math.min(s, e) - 1;
+        const to = Math.max(s, e);
+        return words.slice(from, to);
+      }
+
+      const byLesson = words.filter(function(w) { return w.lesson === rangeType; });
+      return byLesson.length > 0 ? byLesson : words;
+    }
+
     function initWordList() {
       const form = document.getElementById("add-word-form");
       const inputEn = document.getElementById("input-en");
@@ -1417,75 +1543,85 @@
       });
     }
 
-    function updateFilterAndLessonSelects() {
-      const lessonSet = new Set();
-      words.forEach(function(w) {
-        if (w.lesson) lessonSet.add(w.lesson);
-      });
-      const lessons = Array.from(lessonSet);
+    function buildRangeSelectOptions(total) {
+      let optHtml = '<option value="all">🌟 全部單字 (1 ~ ' + total + ')</option>';
+      if (total >= 5) {
+        const e1 = (words[0] ? words[0].en : "") + " ~ " + (words[4] ? words[4].en : "");
+        optHtml += '<option value="range:1-5">📘 第 1 ~ 5 個 (' + escapeHtml(e1) + ')</option>';
+      }
+      if (total >= 10) {
+        const e2 = (words[4] ? words[4].en : "") + " ~ " + (words[9] ? words[9].en : "");
+        optHtml += '<option value="range:5-10">📗 第 5 ~ 10 個 (' + escapeHtml(e2) + ')</option>';
+        optHtml += '<option value="range:6-10">📗 第 6 ~ 10 個</option>';
+      }
+      if (total >= 15) {
+        const e3 = (words[9] ? words[9].en : "") + " ~ " + (words[total-1] ? words[total-1].en : "");
+        optHtml += '<option value="range:10-' + total + '">📙 第 10 ~ ' + total + ' 個 (' + escapeHtml(e3) + ')</option>';
+        optHtml += '<option value="range:11-' + total + '">📙 第 11 ~ ' + total + ' 個</option>';
+      } else if (total > 10) {
+        optHtml += '<option value="range:10-' + total + '">📙 第 10 ~ ' + total + ' 個</option>';
+      }
+      optHtml += '<option value="custom">⚙️ 自訂範圍...</option>';
+      return optHtml;
+    }
 
+    function updateFilterAndLessonSelects() {
+      const total = words.length;
+
+      // 1. 列表篩選列 (支援全部、1~5、5~10、10~16)
       const filterBar = document.querySelector(".lesson-filter-bar");
       if (filterBar) {
-        let pillsHtml = '<button class="filter-pill ' + (currentListFilter === "all" ? "active" : "") + '" data-lesson="all">🌟 全部 (<span id="count-all">' + words.length + '</span>)</button>';
-        lessons.forEach(function(les) {
-          const c = words.filter(function(w) { return w.lesson === les; }).length;
-          pillsHtml += '<button class="filter-pill ' + (currentListFilter === les ? "active" : "") + '" data-lesson="' + escapeHtml(les) + '">' + escapeHtml(les) + ' (' + c + ')</button>';
-        });
+        let pillsHtml = '<button class="filter-pill ' + (currentListFilter === "all" ? "active" : "") + '" data-filter="all">🌟 全部 (' + total + ')</button>';
+        if (total >= 5) {
+          pillsHtml += '<button class="filter-pill ' + (currentListFilter === "range:1-5" ? "active" : "") + '" data-filter="range:1-5">📘 1 ~ 5 (5個)</button>';
+        }
+        if (total >= 10) {
+          pillsHtml += '<button class="filter-pill ' + (currentListFilter === "range:5-10" ? "active" : "") + '" data-filter="range:5-10">📗 5 ~ 10 (6個)</button>';
+        }
+        if (total >= 15) {
+          pillsHtml += '<button class="filter-pill ' + (currentListFilter === "range:10-" + total ? "active" : "") + '" data-filter="range:10-' + total + '">📙 10 ~ ' + total + ' (' + (total - 9) + '個)</button>';
+        }
+
         filterBar.innerHTML = pillsHtml;
         filterBar.querySelectorAll(".filter-pill").forEach(function(pill) {
           pill.addEventListener("click", function() {
             filterBar.querySelectorAll(".filter-pill").forEach(function(p) { p.classList.remove("active"); });
             pill.classList.add("active");
-            currentListFilter = pill.getAttribute("data-lesson");
+            currentListFilter = pill.getAttribute("data-filter");
             renderWordList();
           });
         });
       }
 
+      // 2. 單字卡範圍選單
       const fcSelect = document.getElementById("fc-lesson-select");
       if (fcSelect) {
         const curVal = fcSelect.value;
-        let optHtml = '<option value="all">🌟 全部單字 (' + words.length + '個)</option>';
-        lessons.forEach(function(les) {
-          const c = words.filter(function(w) { return w.lesson === les; }).length;
-          optHtml += '<option value="' + escapeHtml(les) + '">' + escapeHtml(les) + ' (' + c + '個)</option>';
-        });
-        fcSelect.innerHTML = optHtml;
-        if (curVal && (curVal === "all" || lessons.includes(curVal))) {
+        fcSelect.innerHTML = buildRangeSelectOptions(total);
+        if (curVal && fcSelect.querySelector('option[value="' + curVal + '"]')) {
           fcSelect.value = curVal;
         } else {
           fcSelect.value = "all";
         }
       }
 
+      // 3. 隨機考試範圍選單
       const quizSelect = document.getElementById("quiz-lesson-select");
       if (quizSelect) {
         const curVal = quizSelect.value;
-        let optHtml = '<option value="all">🌟 全部單字 (' + words.length + '個)</option>';
-        lessons.forEach(function(les) {
-          const c = words.filter(function(w) { return w.lesson === les; }).length;
-          optHtml += '<option value="' + escapeHtml(les) + '">' + escapeHtml(les) + ' (' + c + '個)</option>';
-        });
-        quizSelect.innerHTML = optHtml;
-        if (curVal && (curVal === "all" || lessons.includes(curVal))) {
+        quizSelect.innerHTML = buildRangeSelectOptions(total);
+        if (curVal && quizSelect.querySelector('option[value="' + curVal + '"]')) {
           quizSelect.value = curVal;
         } else {
           quizSelect.value = "all";
         }
       }
 
-      const inputLesson = document.getElementById("input-lesson");
-      if (inputLesson) {
-        const cur = inputLesson.value;
-        let opts = ['單字庫', '自訂'];
-        lessons.forEach(function(les) {
-          if (!opts.includes(les)) opts.push(les);
-        });
-        inputLesson.innerHTML = opts.map(function(o) {
-          return '<option value="' + escapeHtml(o) + '">' + escapeHtml(o) + '</option>';
-        }).join("");
-        if (cur && opts.includes(cur)) inputLesson.value = cur;
-      }
+      // 4. 更新自訂範圍輸入框的 max 值
+      ['fc-range-start', 'fc-range-end', 'quiz-range-start', 'quiz-range-end'].forEach(function(id) {
+        const el = document.getElementById(id);
+        if (el) el.max = Math.max(1, total);
+      });
     }
 
     function renderWordList() {
@@ -1499,7 +1635,16 @@
 
       const filtered = words
         .map(function(w, idx) { return Object.assign({}, w, { originalIndex: idx }); })
-        .filter(function(w) { return currentListFilter === "all" || w.lesson === currentListFilter; });
+        .filter(function(w) {
+          if (currentListFilter === "all") return true;
+          if (currentListFilter.startsWith("range:")) {
+            const parts = currentListFilter.replace("range:", "").split("-");
+            const s = parseInt(parts[0], 10);
+            const e = parseInt(parts[1], 10);
+            return (w.originalIndex + 1) >= s && (w.originalIndex + 1) <= e;
+          }
+          return w.lesson === currentListFilter;
+        });
 
       if (filtered.length === 0) {
         container.innerHTML = "";
@@ -1512,6 +1657,7 @@
         return '<div class="word-item">' +
           '<div class="word-info">' +
             '<div class="word-en-line">' +
+              '<span class="word-num-badge">#' + (w.originalIndex + 1) + '</span>' +
               '<span class="lesson-badge ' + getBadgeClass(w.lesson) + '">' + escapeHtml(w.lesson || "單字庫") + '</span>' +
               '<span class="word-en">' + escapeHtml(w.en) + '</span>' +
             '</div>' +
@@ -1619,11 +1765,11 @@
       });
     }
 
+    // ================= 單字卡功能 (支援範圍切換) =================
     function getFilteredCardWords() {
       const select = document.getElementById("fc-lesson-select");
-      const filter = select ? select.value : "all";
-      if (filter === "all") return words;
-      return words.filter(function(w) { return w.lesson === filter; });
+      const val = select ? select.value : fcRangeType;
+      return getWordsByRange(val, fcCustomStart, fcCustomEnd);
     }
 
     function initFlashcard() {
@@ -1634,9 +1780,29 @@
       const btnAudioFront = document.getElementById("btn-fc-audio");
       const btnAudioBack = document.getElementById("btn-fc-audio-back");
       const fcLessonSelect = document.getElementById("fc-lesson-select");
+      const fcCustomRow = document.getElementById("fc-custom-range-row");
+      const btnApplyFc = document.getElementById("btn-apply-fc-range");
 
       if (fcLessonSelect) {
         fcLessonSelect.addEventListener("change", function() {
+          fcRangeType = fcLessonSelect.value;
+          if (fcRangeType === "custom") {
+            if (fcCustomRow) fcCustomRow.style.display = "flex";
+          } else {
+            if (fcCustomRow) fcCustomRow.style.display = "none";
+            currentCardIndex = 0;
+            isCardFlipped = false;
+            updateCardDisplay();
+          }
+        });
+      }
+
+      if (btnApplyFc) {
+        btnApplyFc.addEventListener("click", function() {
+          const s = parseInt(document.getElementById("fc-range-start").value, 10) || 1;
+          const e = parseInt(document.getElementById("fc-range-end").value, 10) || words.length;
+          fcCustomStart = s;
+          fcCustomEnd = e;
           currentCardIndex = 0;
           isCardFlipped = false;
           updateCardDisplay();
@@ -1741,7 +1907,7 @@
 
       if (activeWords.length === 0) {
         enText.textContent = "尚無單字";
-        zhText.textContent = "請切換課次或新增單字";
+        zhText.textContent = "請切換範圍或在列表新增單字";
         counter.textContent = "0 / 0";
         return;
       }
@@ -1752,18 +1918,30 @@
       const current = activeWords[currentCardIndex];
       enText.textContent = current.en;
       zhText.textContent = current.zh;
-      const lessonTag = current.lesson ? " [" + current.lesson + "]" : "";
-      counter.textContent = "第 " + (currentCardIndex + 1) + " / " + activeWords.length + " 個" + lessonTag;
+      counter.textContent = "第 " + (currentCardIndex + 1) + " / " + activeWords.length + " 個";
 
       speak(current.en);
     }
 
-    // ================= 隨機考試系統 (全數答對為止通關機制) =================
+    // ================= 隨機考試系統 (全數答對為止通關機制 + 支援範圍篩選) =================
     function getFilteredQuizWords() {
       const select = document.getElementById("quiz-lesson-select");
-      const filter = select ? select.value : "all";
-      if (filter === "all") return words;
-      return words.filter(function(w) { return w.lesson === filter; });
+      const val = select ? select.value : quizRangeType;
+      return getWordsByRange(val, quizCustomStart, quizCustomEnd);
+    }
+
+    function getRangeDisplayName() {
+      const select = document.getElementById("quiz-lesson-select");
+      if (!select) return "全部單字";
+      const val = select.value;
+      if (val === "all") return "全部單字 (1 ~ " + words.length + ")";
+      if (val === "range:1-5") return "第 1 ~ 5 題";
+      if (val === "range:5-10") return "第 5 ~ 10 題";
+      if (val === "range:10-16" || val === ("range:10-" + words.length)) return "第 10 ~ " + words.length + " 題";
+      if (val === "range:6-10") return "第 6 ~ 10 題";
+      if (val === "range:11-16" || val === ("range:11-" + words.length)) return "第 11 ~ " + words.length + " 題";
+      if (val === "custom") return "自訂範圍 (第 " + quizCustomStart + " ~ " + quizCustomEnd + " 題)";
+      return select.options[select.selectedIndex] ? select.options[select.selectedIndex].text : val;
     }
 
     function initQuiz() {
@@ -1774,6 +1952,8 @@
       const quizTypeSelect = document.getElementById("quiz-type");
       const quizLessonSelect = document.getElementById("quiz-lesson-select");
       const quizModeSelect = document.getElementById("quiz-mode-select");
+      const quizCustomRow = document.getElementById("quiz-custom-range-row");
+      const btnApplyQuiz = document.getElementById("btn-apply-quiz-range");
 
       const retryBtn = document.getElementById("btn-quiz-retry-submit");
       const retryInput = document.getElementById("quiz-retry-input");
@@ -1812,6 +1992,22 @@
 
       if (quizLessonSelect) {
         quizLessonSelect.addEventListener("change", function() {
+          quizRangeType = quizLessonSelect.value;
+          if (quizRangeType === "custom") {
+            if (quizCustomRow) quizCustomRow.style.display = "flex";
+          } else {
+            if (quizCustomRow) quizCustomRow.style.display = "none";
+            startQuiz();
+          }
+        });
+      }
+
+      if (btnApplyQuiz) {
+        btnApplyQuiz.addEventListener("click", function() {
+          const s = parseInt(document.getElementById("quiz-range-start").value, 10) || 1;
+          const e = parseInt(document.getElementById("quiz-range-end").value, 10) || words.length;
+          quizCustomStart = s;
+          quizCustomEnd = e;
           startQuiz();
         });
       }
@@ -1950,7 +2146,6 @@
         currentQuizWord = quizQueue[quizIndex];
         if (reviewTag) reviewTag.style.display = "none";
       } else if (quizMode === "mastery") {
-        // ===== 通關模式 (全數答對為止) =====
         if (remainingWords.length === 0) {
           showMasteryFinish();
           return;
@@ -1969,7 +2164,6 @@
             reviewTag.textContent = "⚠️ 錯題強化 (答對即可掌握！)";
           }
         } else {
-          // 從剩餘未掌握單字中挑選
           const otherRemaining = remainingWords.filter(function(w) {
             return !currentQuizWord || remainingWords.length === 1 || w.en !== currentQuizWord.en;
           });
@@ -1978,7 +2172,6 @@
           if (reviewTag) reviewTag.style.display = "none";
         }
       } else {
-        // ===== 純無限刷題模式 =====
         const eligibleMistakes = endlessMistakes.filter(function(w) {
           return !currentQuizWord || pool.length === 1 || w.en !== currentQuizWord.en;
         });
@@ -2102,7 +2295,7 @@
         const pool = getFilteredQuizWords();
         msg = "🎯 掌握成功！進度：" + masteredEnWords.size + " / " + pool.length + " (" + currentQuizWord.en + " = " + currentQuizWord.zh + ")";
         if (remainingWords.length === 0) {
-          msg = "🎉 太神了！所有單字已全數掌握通關！";
+          msg = "🎉 太神了！本範圍單字已全數掌握通關！";
         }
       } else if (quizMode === "endless") {
         const mistakeIdx = endlessMistakes.findIndex(function(w) { return w.en === currentQuizWord.en; });
@@ -2268,14 +2461,14 @@
 
     function showMasteryFinish() {
       const pool = getFilteredQuizWords();
-      const accuracy = Math.round((pool.length / Math.max(quizTotalAnswered, pool.length)) * 100);
-      const msg = "🎉【恭喜通關！全部單字皆已掌握！】\n\n" +
-        "• 通關單字數：" + pool.length + " 個單字\n" +
+      const rangeName = getRangeDisplayName();
+      const msg = "🎉【恭喜通關！本範圍單字皆已掌握！】\n\n" +
+        "• 通關範圍：" + rangeName + " (共 " + pool.length + " 個單字)\n" +
         "• 總作答題數：" + quizTotalAnswered + " 題\n" +
         "• 累計得分：" + quizScore + " 分\n" +
         "• 最高連勝：" + quizMaxStreak + " 題\n\n" +
-        "所有答錯的單字均已重複考出並成功掌握！\n" +
-        "要再挑戰一輪強化記憶嗎？";
+        "太棒了！本範圍內答錯的單字均已重複考出並成功掌握！\n" +
+        "要再挑戰一輪或切換其他範圍嗎？";
 
       alert(msg);
       startQuiz();
@@ -2288,10 +2481,12 @@
 
     function finishQuizAndShowSummary() {
       const pool = getFilteredQuizWords();
-      const modeName = (quizMode === "mastery") ? "🎯 通關模式 (全數答對為止)" : ((quizMode === "endless") ? "♾️ 無限刷題" : "📝 標準模式");
+      const modeName = (quizMode === "mastery") ? "🎯 通關模式" : ((quizMode === "endless") ? "♾️ 無限刷題" : "📝 標準模式");
       const unmastered = (quizMode === "mastery") ? remainingWords.length : endlessMistakes.length;
+      const rangeName = getRangeDisplayName();
       
       const msg = "📊 【測驗成果結算】\n\n" +
+        "• 測驗範圍：" + rangeName + "\n" +
         "• 測驗模式：" + modeName + "\n" +
         "• 總測驗題數：" + quizTotalAnswered + " 題\n" +
         "• 累計得分：" + quizScore + " 分\n" +
