@@ -782,10 +782,10 @@
               <option value="單字庫">單字庫</option>
               <option value="自訂">自訂</option>
             </select>
-            <input type="text" id="input-en" placeholder="英文 (如: stranger)" autocomplete="off" autocapitalize="off" required>
+            <input type="text" id="input-en" placeholder="英文 (如: plastic)" autocomplete="off" autocapitalize="off" required>
           </div>
           <div class="form-row">
-            <input type="text" id="input-zh" placeholder="中文 (如: 陌生人)" autocomplete="off" required>
+            <input type="text" id="input-zh" placeholder="中文 (如: 塑膠（製）的)" autocomplete="off" required>
             <button type="submit" id="btn-add" class="btn btn-primary" style="flex-shrink: 0; min-width: 100px;">加入單字</button>
           </div>
         </form>
@@ -793,7 +793,7 @@
 
       <section class="card">
         <h2>
-          <span>📚 單字庫 (<span id="total-count">9</span>)</span>
+          <span>📚 單字庫 (<span id="total-count">16</span>)</span>
           <div class="list-header-actions">
             <button id="btn-batch-modal-open" class="btn btn-primary-subtle" title="批次貼上整批單字">📋 批次匯入</button>
             <button id="btn-quick-sample" class="btn btn-subtle" title="恢復預設單字">恢復預設</button>
@@ -802,7 +802,7 @@
         </h2>
 
         <div class="lesson-filter-bar">
-          <button class="filter-pill active" data-lesson="all">🌟 全部 (<span id="count-all">9</span>)</button>
+          <button class="filter-pill active" data-lesson="all">🌟 全部 (<span id="count-all">16</span>)</button>
         </div>
 
         <div id="word-list-container" class="word-list">
@@ -810,109 +810,193 @@
             <div class="word-info">
               <div class="word-en-line">
                 <span class="lesson-badge badge-custom">單字庫</span>
-                <span class="word-en">stranger</span>
+                <span class="word-en">plastic</span>
               </div>
-              <span class="word-zh">陌生人</span>
+              <span class="word-zh">塑膠（製）的</span>
             </div>
             <div class="word-tools">
-              <button class="icon-btn" data-speak="stranger">🔊 發音</button>
+              <button class="icon-btn" data-speak="plastic">🔊 發音</button>
               <button class="icon-btn" data-del-index="0">🗑️</button>
             </div>
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
                 <span class="lesson-badge badge-custom">單字庫</span>
-                <span class="word-en">parade</span>
+                <span class="word-en">convenience</span>
               </div>
-              <span class="word-zh">遊行</span>
+              <span class="word-zh">便利</span>
             </div>
             <div class="word-tools">
-              <button class="icon-btn" data-speak="parade">🔊 發音</button>
+              <button class="icon-btn" data-speak="convenience">🔊 發音</button>
               <button class="icon-btn" data-del-index="1">🗑️</button>
             </div>
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
                 <span class="lesson-badge badge-custom">單字庫</span>
-                <span class="word-en">cheerfully</span>
+                <span class="word-en">eagerly</span>
               </div>
-              <span class="word-zh">興高采烈的</span>
+              <span class="word-zh">渴望地</span>
             </div>
             <div class="word-tools">
-              <button class="icon-btn" data-speak="cheerfully">🔊 發音</button>
+              <button class="icon-btn" data-speak="eagerly">🔊 發音</button>
               <button class="icon-btn" data-del-index="2">🗑️</button>
             </div>
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
                 <span class="lesson-badge badge-custom">單字庫</span>
-                <span class="word-en">splash</span>
+                <span class="word-en">surround</span>
               </div>
-              <span class="word-zh">戲水</span>
+              <span class="word-zh">環繞</span>
             </div>
             <div class="word-tools">
-              <button class="icon-btn" data-speak="splash">🔊 發音</button>
+              <button class="icon-btn" data-speak="surround">🔊 發音</button>
               <button class="icon-btn" data-del-index="3">🗑️</button>
             </div>
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
                 <span class="lesson-badge badge-custom">單字庫</span>
-                <span class="word-en">spare</span>
+                <span class="word-en">drift</span>
               </div>
-              <span class="word-zh">倖免</span>
+              <span class="word-zh">漂流</span>
             </div>
             <div class="word-tools">
-              <button class="icon-btn" data-speak="spare">🔊 發音</button>
+              <button class="icon-btn" data-speak="drift">🔊 發音</button>
               <button class="icon-btn" data-del-index="4">🗑️</button>
             </div>
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
                 <span class="lesson-badge badge-custom">單字庫</span>
-                <span class="word-en">respect</span>
+                <span class="word-en">envy</span>
               </div>
-              <span class="word-zh">尊敬</span>
+              <span class="word-zh">羨慕</span>
             </div>
             <div class="word-tools">
-              <button class="icon-btn" data-speak="respect">🔊 發音</button>
+              <button class="icon-btn" data-speak="envy">🔊 發音</button>
               <button class="icon-btn" data-del-index="5">🗑️</button>
             </div>
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
                 <span class="lesson-badge badge-custom">單字庫</span>
-                <span class="word-en">tourist</span>
+                <span class="word-en">crowded</span>
               </div>
-              <span class="word-zh">觀光客</span>
+              <span class="word-zh">擠滿的；擁擠的</span>
             </div>
             <div class="word-tools">
-              <button class="icon-btn" data-speak="tourist">🔊 發音</button>
+              <button class="icon-btn" data-speak="crowded">🔊 發音</button>
               <button class="icon-btn" data-del-index="6">🗑️</button>
             </div>
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
                 <span class="lesson-badge badge-custom">單字庫</span>
-                <span class="word-en">target</span>
+                <span class="word-en">obviously</span>
               </div>
-              <span class="word-zh">靶子</span>
+              <span class="word-zh">顯然</span>
             </div>
             <div class="word-tools">
-              <button class="icon-btn" data-speak="target">🔊 發音</button>
+              <button class="icon-btn" data-speak="obviously">🔊 發音</button>
               <button class="icon-btn" data-del-index="7">🗑️</button>
             </div>
           </div>\n          <div class="word-item">
             <div class="word-info">
               <div class="word-en-line">
                 <span class="lesson-badge badge-custom">單字庫</span>
-                <span class="word-en">community</span>
+                <span class="word-en">product</span>
               </div>
-              <span class="word-zh">社區</span>
+              <span class="word-zh">產品</span>
             </div>
             <div class="word-tools">
-              <button class="icon-btn" data-speak="community">🔊 發音</button>
+              <button class="icon-btn" data-speak="product">🔊 發音</button>
               <button class="icon-btn" data-del-index="8">🗑️</button>
+            </div>
+          </div>\n          <div class="word-item">
+            <div class="word-info">
+              <div class="word-en-line">
+                <span class="lesson-badge badge-custom">單字庫</span>
+                <span class="word-en">consume</span>
+              </div>
+              <span class="word-zh">吃喝；消耗</span>
+            </div>
+            <div class="word-tools">
+              <button class="icon-btn" data-speak="consume">🔊 發音</button>
+              <button class="icon-btn" data-del-index="9">🗑️</button>
+            </div>
+          </div>\n          <div class="word-item">
+            <div class="word-info">
+              <div class="word-en-line">
+                <span class="lesson-badge badge-custom">單字庫</span>
+                <span class="word-en">poisonous</span>
+              </div>
+              <span class="word-zh">有毒的</span>
+            </div>
+            <div class="word-tools">
+              <button class="icon-btn" data-speak="poisonous">🔊 發音</button>
+              <button class="icon-btn" data-del-index="10">🗑️</button>
+            </div>
+          </div>\n          <div class="word-item">
+            <div class="word-info">
+              <div class="word-en-line">
+                <span class="lesson-badge badge-custom">單字庫</span>
+                <span class="word-en">substance</span>
+              </div>
+              <span class="word-zh">物質</span>
+            </div>
+            <div class="word-tools">
+              <button class="icon-btn" data-speak="substance">🔊 發音</button>
+              <button class="icon-btn" data-del-index="11">🗑️</button>
+            </div>
+          </div>\n          <div class="word-item">
+            <div class="word-info">
+              <div class="word-en-line">
+                <span class="lesson-badge badge-custom">單字庫</span>
+                <span class="word-en">recycling</span>
+              </div>
+              <span class="word-zh">回收</span>
+            </div>
+            <div class="word-tools">
+              <button class="icon-btn" data-speak="recycling">🔊 發音</button>
+              <button class="icon-btn" data-del-index="12">🗑️</button>
+            </div>
+          </div>\n          <div class="word-item">
+            <div class="word-info">
+              <div class="word-en-line">
+                <span class="lesson-badge badge-custom">單字庫</span>
+                <span class="word-en">harm</span>
+              </div>
+              <span class="word-zh">傷害</span>
+            </div>
+            <div class="word-tools">
+              <button class="icon-btn" data-speak="harm">🔊 發音</button>
+              <button class="icon-btn" data-del-index="13">🗑️</button>
+            </div>
+          </div>\n          <div class="word-item">
+            <div class="word-info">
+              <div class="word-en-line">
+                <span class="lesson-badge badge-custom">單字庫</span>
+                <span class="word-en">environment</span>
+              </div>
+              <span class="word-zh">自然環境</span>
+            </div>
+            <div class="word-tools">
+              <button class="icon-btn" data-speak="environment">🔊 發音</button>
+              <button class="icon-btn" data-del-index="14">🗑️</button>
+            </div>
+          </div>\n          <div class="word-item">
+            <div class="word-info">
+              <div class="word-en-line">
+                <span class="lesson-badge badge-custom">單字庫</span>
+                <span class="word-en">properly</span>
+              </div>
+              <span class="word-zh">適當地</span>
+            </div>
+            <div class="word-tools">
+              <button class="icon-btn" data-speak="properly">🔊 發音</button>
+              <button class="icon-btn" data-del-index="15">🗑️</button>
             </div>
           </div>
         </div>
@@ -928,21 +1012,21 @@
       <div class="flashcard-wrapper">
         <div class="fc-filter-row">
           <select id="fc-lesson-select" class="select-box">
-            <option value="all">🌟 全部單字 (9個)</option>
+            <option value="all">🌟 全部單字 (16個)</option>
           </select>
-          <span id="fc-counter">第 1 / 9 個 [單字庫]</span>
+          <span id="fc-counter">第 1 / 16 個 [單字庫]</span>
         </div>
 
         <div id="flashcard" class="flashcard">
           <div class="fc-inner">
             <div class="fc-front">
               <span class="fc-subtext">英文 (點擊翻看中文)</span>
-              <h2 id="fc-en-text" class="fc-en">stranger</h2>
+              <h2 id="fc-en-text" class="fc-en">plastic</h2>
               <button id="btn-fc-audio" class="audio-btn" type="button">🔊 聽發音</button>
             </div>
             <div class="fc-back">
               <span class="fc-subtext">中文意思</span>
-              <h2 id="fc-zh-text" class="fc-zh">陌生人</h2>
+              <h2 id="fc-zh-text" class="fc-zh">塑膠（製）的</h2>
               <button id="btn-fc-audio-back" class="audio-btn" type="button">🔊 聽發音</button>
             </div>
           </div>
@@ -966,7 +1050,7 @@
             <span class="score-badge">🏆 得分: <b id="quiz-score">0</b></span>
             <span class="streak-badge" id="quiz-streak-badge" style="color: #ea580c; font-weight: 800;">🔥 連勝: <b id="quiz-streak">0</b></span>
             <span class="mistake-badge" id="quiz-mistake-badge" style="color: #dc2626; font-weight: 700; display: none;">❌ 待強化: <b id="quiz-mistake-count">0</b></span>
-            <span class="count-badge" id="quiz-progress-text">🎯 掌握進度: 0 / 9</span>
+            <span class="count-badge" id="quiz-progress-text">🎯 掌握進度: 0 / 16</span>
           </div>
           <div class="quiz-controls-row">
             <div class="quiz-setting-item">
@@ -999,14 +1083,14 @@
           <div class="quiz-question-area">
             <div id="quiz-review-tag" style="display: none; font-size: 0.78rem; font-weight: 800; background: #fee2e2; color: #dc2626; border-radius: 12px; padding: 2px 10px; margin: 0 auto 8px auto; width: fit-content;">⚠️ 錯題複習 (答對即可掌握)</div>
             <button id="btn-quiz-audio" class="quiz-audio-btn" type="button" style="display: none;">🔊 播放發音</button>
-            <h2 id="quiz-question-prompt" class="quiz-prompt">陌生人</h2>
+            <h2 id="quiz-question-prompt" class="quiz-prompt">塑膠（製）的</h2>
             <p id="quiz-hint-text" class="quiz-hint">請選出正確的英文單字：</p>
 
             <div id="quiz-choices" class="choices-grid">
-              <button class="choice-btn" data-en="stranger">stranger</button>
-              <button class="choice-btn" data-en="parade">parade</button>
-              <button class="choice-btn" data-en="cheerfully">cheerfully</button>
-              <button class="choice-btn" data-en="splash">splash</button>
+              <button class="choice-btn" data-en="plastic">plastic</button>
+              <button class="choice-btn" data-en="convenience">convenience</button>
+              <button class="choice-btn" data-en="eagerly">eagerly</button>
+              <button class="choice-btn" data-en="surround">surround</button>
             </div>
 
             <form id="quiz-form" class="quiz-spell-form" style="display: none;" onsubmit="return false;">
@@ -1045,12 +1129,12 @@
       <div class="modal-body">
         <p class="modal-hint">
           直接貼上多行單字，支援常見格式：<br>
-          • <code>stranger 陌生人</code><br>
-          • <code>splash: 戲水</code><br>
-          • <code>tourist - 觀光客</code><br>
+          • <code>plastic 塑膠（製）的</code><br>
+          • <code>convenience: 便利</code><br>
+          • <code>eagerly - 渴望地</code><br>
           • Excel / 試算表直接複製貼上
         </p>
-        <textarea id="batch-import-text" class="batch-textarea" placeholder="stranger 陌生人&#10;parade 遊行&#10;cheerfully 興高采烈的&#10;splash 戲水&#10;spare 倖免&#10;respect 尊敬&#10;tourist 觀光客&#10;target 靶子&#10;community 社區"></textarea>
+        <textarea id="batch-import-text" class="batch-textarea" placeholder="plastic 塑膠（製）的&#10;convenience 便利&#10;eagerly 渴望地&#10;surround 環繞"></textarea>
         
         <div class="batch-options">
           <label><input type="radio" name="batch-mode" value="replace" checked> 覆蓋現有單字</label>
@@ -1069,8 +1153,8 @@
   </div>
 
   <script>
-    const CURRENT_DATA_VERSION = "2026_11_01_user_v7";
-    const DEFAULT_WORDS = [{"en": "stranger", "zh": "陌生人", "lesson": "單字庫"}, {"en": "parade", "zh": "遊行", "lesson": "單字庫"}, {"en": "cheerfully", "zh": "興高采烈的", "lesson": "單字庫"}, {"en": "splash", "zh": "戲水", "lesson": "單字庫"}, {"en": "spare", "zh": "倖免", "lesson": "單字庫"}, {"en": "respect", "zh": "尊敬", "lesson": "單字庫"}, {"en": "tourist", "zh": "觀光客", "lesson": "單字庫"}, {"en": "target", "zh": "靶子", "lesson": "單字庫"}, {"en": "community", "zh": "社區", "lesson": "單字庫"}];
+    const CURRENT_DATA_VERSION = "2026_11_02_user_v8";
+    const DEFAULT_WORDS = [{"en": "plastic", "zh": "塑膠（製）的", "lesson": "單字庫"}, {"en": "convenience", "zh": "便利", "lesson": "單字庫"}, {"en": "eagerly", "zh": "渴望地", "lesson": "單字庫"}, {"en": "surround", "zh": "環繞", "lesson": "單字庫"}, {"en": "drift", "zh": "漂流", "lesson": "單字庫"}, {"en": "envy", "zh": "羨慕", "lesson": "單字庫"}, {"en": "crowded", "zh": "擠滿的；擁擠的", "lesson": "單字庫"}, {"en": "obviously", "zh": "顯然", "lesson": "單字庫"}, {"en": "product", "zh": "產品", "lesson": "單字庫"}, {"en": "consume", "zh": "吃喝；消耗", "lesson": "單字庫"}, {"en": "poisonous", "zh": "有毒的", "lesson": "單字庫"}, {"en": "substance", "zh": "物質", "lesson": "單字庫"}, {"en": "recycling", "zh": "回收", "lesson": "單字庫"}, {"en": "harm", "zh": "傷害", "lesson": "單字庫"}, {"en": "environment", "zh": "自然環境", "lesson": "單字庫"}, {"en": "properly", "zh": "適當地", "lesson": "單字庫"}];
 
     let words = [...DEFAULT_WORDS];
     let currentListFilter = "all";
@@ -1315,7 +1399,7 @@
       });
 
       document.getElementById("btn-quick-sample").addEventListener("click", function() {
-        if (confirm("要重設為初始的 9 個單字嗎？")) {
+        if (confirm("要重設為初始的 16 個單字嗎？")) {
           words = [...DEFAULT_WORDS];
           saveWords();
           updateFilterAndLessonSelects();
