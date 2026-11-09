@@ -1,12 +1,39 @@
-# 英文單字學習測驗系統 (Vocab Learning App)
+# 📚 VocabMaster - 智慧背單字輔助平台
 
-- 內建新單字庫（stranger, parade, cheerfully, spare, respect, tourist, target, community）
-- 支援「📋 批次貼上匯入」，可隨時貼上一整組新單字直接背誦與測驗
-- 支援標準 Web Speech 英文真人朗讀發音
-- 3D 翻轉單字卡（支援手機左右滑動手勢與電腦空白鍵翻牌）
-- 4 種隨機考試模式（看中選英、看英選中、看中拼英、純聽寫）
-- 拼字錯誤強制訂正機制，加深記憶印象
-- 支援手機 PWA 與離線快取
+一個專為桌面與行動裝置（手機/平板）打造的高效率單字學習平台，具備語音朗讀、換字自動發音、雙向選擇題測驗與中文拼寫練習。
 
-支援 GitHub Pages 直接預覽運行：
-https://ryanryan3113112-coder.github.io/vocab/
+🔗 **線上直接使用 (GitHub Pages)**: [https://ryanryan3113112-coder.github.io/vocab/](https://ryanryan3113112-coder.github.io/vocab/)
+
+---
+
+## 📖 本期單字庫清單 (共 10 個)
+1. **objective** /əbˈdʒektɪv/ (n./adj.) - 目標、目的；客觀的
+2. **delay** /dɪˈleɪ/ (v./n.) - 延期、耽擱、推遲
+3. **buzz** /bʌz/ (n./v.) - 嗡嗡聲、熱烈討論、興奮感
+4. **period** /ˈpɪriəd/ (n.) - 時期、階段、課時、句點
+5. **extend / extended** /ɪkˈstend/ (v./adj.) - 延長、擴展、延伸
+6. **track** /træk/ (v./n.) - 追蹤、記錄；跑道、軌跡
+7. **progress** /ˈprɑːɡres/ (n./v.) - 進步、進展、持續前進
+8. **appetite** /ˈæpɪtaɪt/ (n.) - 胃口、食慾、強烈渴望
+9. **concentration** /ˌkɑːnsenˈtreɪʃn/ (n.) - 集中、專注力；濃度
+10. **pile** /paɪl/ (n./v.) - 堆疊、一堆；堆積
+
+---
+
+## ✨ 核心特色與手機相容性
+- **🔊 手機語音全相容**：
+  - 專為 iOS Safari / Android Chrome 打造音訊觸摸解鎖機制，告別手機端無聲或被阻擋問題。
+  - 內建雙引擎發音（Web Speech API + 線上美音 MP3 串流備援）。
+  - **換字自動發音**：翻卡切換單字時自動朗讀發音（支援開關設定）。
+- **📱 手機端排版深度優化**：
+  - 支援 iOS Safe Area (iewport-fit=cover)，無橫向滾動溢出。
+  - 44px+ 友善觸控按鈕大小，支援單手操作。
+- **🎯 雙向選擇測驗**：
+  - 看英文選中文（題目支援語音朗讀）。
+  - 看中文選英文（點選選項同步播放發音）。
+- **✍️ 中文寫英文拼寫練習**：
+  - 根據中文釋義、詞性與字母長度拼出英文單字。
+  - 支援字母提示與答對自動朗讀。
+- **📋 單字管理與離線快取**：
+  - 支援搜尋、學習狀態篩選（全部/複習中/已掌握）與自訂新增單字。
+  - 自動保存學習進度至瀏覽器 LocalStorage。
