@@ -54,7 +54,7 @@
           <div>
             <div class="flex items-center gap-2">
               <h1 class="text-lg sm:text-2xl font-black text-slate-900 tracking-tight">VocabMaster</h1>
-              <span class="text-[11px] px-2 py-0.5 font-bold bg-indigo-50 text-indigo-600 rounded-full border border-indigo-200/60">PRO</span>
+              <span class="text-[11px] px-2 py-0.5 font-bold bg-indigo-50 text-indigo-600 rounded-full border border-indigo-200/60">科技主題篇</span>
             </div>
             <p class="text-xs text-slate-500 mt-0.5">手機平板全相容 • 換字自動朗讀 • 測驗與中文拼寫</p>
           </div>
@@ -146,8 +146,8 @@
                 </div>
 
                 <div class="py-2">
-                  <h2 id="cardWord" class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">objective</h2>
-                  <p id="cardPhonetic" class="text-sm sm:text-lg text-slate-500 font-mono mt-1.5 sm:mt-2">/əbˈdʒektɪv/</p>
+                  <h2 id="cardWord" class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">arrival</h2>
+                  <p id="cardPhonetic" class="text-sm sm:text-lg text-slate-500 font-mono mt-1.5 sm:mt-2">/əˈraɪvl/</p>
                 </div>
 
                 <div class="text-xs sm:text-sm text-slate-400 flex items-center gap-1 font-medium">
@@ -159,8 +159,8 @@
               <div class="backface-hidden rotate-y-180 absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-slate-50 border-2 border-indigo-400 rounded-3xl p-5 sm:p-8 flex flex-col justify-between shadow-xl">
                 <div class="flex justify-between items-center border-b border-indigo-100 pb-2.5">
                   <div class="flex items-center gap-2">
-                    <span id="backWord" class="font-extrabold text-lg sm:text-xl text-indigo-700">objective</span>
-                    <span id="backPhonetic" class="text-xs text-slate-500 font-mono">/əbˈdʒektɪv/</span>
+                    <span id="backWord" class="font-extrabold text-lg sm:text-xl text-indigo-700">arrival</span>
+                    <span id="backPhonetic" class="text-xs text-slate-500 font-mono">/əˈraɪvl/</span>
                   </div>
                   <button onclick="event.stopPropagation(); playCurrentWordAudio();" class="text-indigo-600 hover:text-indigo-800 text-xs sm:text-sm font-bold flex items-center gap-1 px-2 py-1 rounded bg-indigo-50/80">
                     🔊 重複發音
@@ -170,7 +170,7 @@
                 <div class="my-auto text-left space-y-3">
                   <div>
                     <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400">中文釋義</span>
-                    <div id="cardDefinition" class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-0.5">目標、目的；客觀的</div>
+                    <div id="cardDefinition" class="text-xl sm:text-3xl font-extrabold text-slate-900 mt-0.5">到來、到達</div>
                   </div>
                   
                   <div class="bg-white/95 backdrop-blur border border-indigo-100/90 rounded-2xl p-3 sm:p-4 shadow-sm space-y-1">
@@ -178,10 +178,10 @@
                       <span>💡 實用例句</span>
                     </div>
                     <p id="cardExampleEn" class="text-xs sm:text-base font-medium text-slate-800 italic leading-relaxed">
-                      "Our main objective is to complete the project before Friday."
+                      "The arrival of the new smartphone caused long lines outside the store."
                     </p>
                     <p id="cardExampleZh" class="text-[11px] sm:text-xs text-slate-500 font-normal">
-                      我們的主要目標是在週五前完成這項專案。
+                      新款智慧型手機的到來讓店門口排起了長龍。
                     </p>
                   </div>
                 </div>
@@ -239,7 +239,7 @@
 
             <div class="text-center py-5 sm:py-6 bg-slate-50 rounded-2xl border border-slate-200/60">
               <span id="quizInstruction" class="text-xs text-slate-400 font-medium">請選出正確的中文意思：</span>
-              <div id="quizQuestionWord" class="text-2xl sm:text-4xl font-black text-slate-900 mt-1.5 tracking-tight">objective</div>
+              <div id="quizQuestionWord" class="text-2xl sm:text-4xl font-black text-slate-900 mt-1.5 tracking-tight">arrival</div>
               <button id="quizSpeakBtn" onclick="speakQuizWord()" class="mt-2 text-xs font-bold text-indigo-600 inline-flex items-center gap-1 hover:underline active:scale-95">
                 🔊 聽發音
               </button>
@@ -270,17 +270,17 @@
 
             <div class="bg-indigo-50/50 border border-indigo-100 rounded-2xl p-4 sm:p-6 text-center space-y-1.5">
               <span class="text-[10px] sm:text-xs font-bold text-indigo-500 uppercase">中文題目釋義</span>
-              <div id="spellMeaning" class="text-2xl sm:text-4xl font-extrabold text-slate-900">目標；客觀的</div>
+              <div id="spellMeaning" class="text-2xl sm:text-4xl font-extrabold text-slate-900">到來、到達</div>
               <div class="flex items-center justify-center gap-2 pt-1">
-                <span id="spellPos" class="px-2 py-0.5 bg-white text-indigo-700 border border-indigo-200/60 rounded-full text-xs font-semibold">n. / adj.</span>
-                <span id="spellLength" class="text-xs text-slate-400 font-mono">(9 個英文字母)</span>
+                <span id="spellPos" class="px-2.5 py-0.5 bg-white text-indigo-700 border border-indigo-200/60 rounded-full text-xs font-semibold">noun</span>
+                <span id="spellLength" class="text-xs text-slate-400 font-mono">(7 個英文字母)</span>
               </div>
             </div>
 
             <div class="bg-slate-50 border border-slate-200/60 rounded-2xl p-3 sm:p-4">
               <div class="text-[11px] font-bold text-indigo-600 mb-0.5">例句語境參考</div>
               <p id="spellSentence" class="text-xs sm:text-base font-medium text-slate-800 italic">
-                Our primary _______ is to finish the project.
+                The _______ of the new smartphone caused long lines outside the store.
               </p>
             </div>
 
@@ -320,7 +320,7 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <span class="text-lg">📋</span>
-              <h2 class="text-sm sm:text-base font-extrabold text-slate-900">單字庫清單</h2>
+              <h2 class="text-sm sm:text-base font-extrabold text-slate-900">科技單字庫清單</h2>
               <span id="badgeWordCount" class="text-xs px-2 py-0.5 bg-slate-100 text-slate-600 rounded-full font-bold">10</span>
             </div>
             <button onclick="resetAllProgress()" class="text-xs text-rose-500 hover:underline">
@@ -357,13 +357,13 @@
           <!-- Quick Add Word Accordion -->
           <details class="bg-slate-50 border border-slate-200/80 rounded-xl p-3 text-xs">
             <summary class="font-bold cursor-pointer text-indigo-600 select-none flex items-center justify-between">
-              <span>➕ 自訂新增生詞</span>
+              <span>➕ 自訂新增更多單字</span>
               <span class="text-slate-400 text-[10px]">點擊展開</span>
             </summary>
             <div class="grid grid-cols-2 gap-2 mt-2.5">
-              <input id="newWord" placeholder="英文 (如 expand)" class="p-2 bg-white border border-slate-200 rounded-lg text-xs text-slate-800">
-              <input id="newZh" placeholder="中文釋義 (如 擴展)" class="p-2 bg-white border border-slate-200 rounded-lg text-xs text-slate-800">
-              <input id="newPos" placeholder="詞性 (如 v.)" class="p-2 bg-white border border-slate-200 rounded-lg text-xs text-slate-800">
+              <input id="newWord" placeholder="英文 (如 innovation)" class="p-2 bg-white border border-slate-200 rounded-lg text-xs text-slate-800">
+              <input id="newZh" placeholder="中文釋義 (如 創新)" class="p-2 bg-white border border-slate-200 rounded-lg text-xs text-slate-800">
+              <input id="newPos" placeholder="詞性 (如 n.)" class="p-2 bg-white border border-slate-200 rounded-lg text-xs text-slate-800">
               <input id="newExample" placeholder="英文例句 (選填)" class="p-2 bg-white border border-slate-200 rounded-lg text-xs text-slate-800">
             </div>
             <button onclick="addNewWord()" class="mt-2.5 w-full py-2 bg-indigo-600 text-white rounded-lg font-bold hover:bg-indigo-700 active:scale-98 transition">
@@ -380,112 +380,114 @@
   </div>
 
   <script>
-    // Complete 10 Core Words
+    // Current Lesson Version identifier to automatically migrate client localStorage
+    const CURRENT_LESSON_VERSION = "v2_tech_20261116";
+
+    // 10 Tech Vocabulary Words (Corrected spelling: technology)
     const DEFAULT_WORDS = [
       {
-        word: "objective",
-        phonetic: "/əbˈdʒektɪv/",
-        pos: "n. / adj.",
-        zh: "目標、目的；客觀的",
-        enExample: "Our main objective is to complete the project before Friday.",
-        zhExample: "我們的主要目標是在週五前完成這項專案。",
+        word: "arrival",
+        phonetic: "/əˈraɪvl/",
+        pos: "n.",
+        zh: "到來、到達",
+        enExample: "The arrival of the new smartphone caused long lines outside the store.",
+        zhExample: "新款智慧型手機的到來讓店門口排起了長龍。",
         mastered: false
       },
       {
-        word: "delay",
-        phonetic: "/dɪˈleɪ/",
+        word: "eventually",
+        phonetic: "/ɪˈventʃuəli/",
+        pos: "adv.",
+        zh: "終於、最後",
+        enExample: "After months of hard work, the team eventually finished the project.",
+        zhExample: "經過數月的辛勤工作，團隊終於完成了這項專案。",
+        mastered: false
+      },
+      {
+        word: "release",
+        phonetic: "/rɪˈliːs/",
         pos: "v. / n.",
-        zh: "延期、耽擱、推遲",
-        enExample: "The flight was delayed due to heavy storm conditions.",
-        zhExample: "航班因暴風雨而延誤。",
+        zh: "發行、發布、釋出",
+        enExample: "The tech company will release its latest operating system next month.",
+        zhExample: "這家科技公司將於下個月發布其最新的作業系統。",
         mastered: false
       },
       {
-        word: "buzz",
-        phonetic: "/bʌz/",
-        pos: "n. / v.",
-        zh: "嗡嗡聲、熱烈討論、興奮感",
-        enExample: "There was a loud buzz among the crowd after the announcement.",
-        zhExample: "在宣布消息之後，人群中爆發出熱烈的討論與騷動。",
+        word: "foldable",
+        phonetic: "/ˈfoʊldəbl/",
+        pos: "adj.",
+        zh: "可折疊的",
+        enExample: "Foldable screens are becoming increasingly popular in modern devices.",
+        zhExample: "可折疊螢幕在現代電子裝置中正變得越來越受歡迎。",
         mastered: false
       },
       {
-        word: "period",
-        phonetic: "/ˈpɪriəd/",
+        word: "production",
+        phonetic: "/prəˈdʌkʃn/",
         pos: "n.",
-        zh: "時期、階段、課時、句點",
-        enExample: "This represents an important period of historical transformation.",
-        zhExample: "這代表了一個重要的歷史轉型時期。",
+        zh: "生產、製造、產量",
+        enExample: "The factory increased its production to meet high global demand.",
+        zhExample: "工廠提高了生產量以滿足龐大的全球市場需求。",
         mastered: false
       },
       {
-        word: "extend",
-        phonetic: "/ɪkˈstend/",
-        pos: "v.",
-        zh: "延長、擴展、延伸 (原輸入: extened)",
-        enExample: "They decided to extend the deadline by another week.",
-        zhExample: "他們決定將最後截止期限延長一週。",
+        word: "digital",
+        phonetic: "/ˈdɪdʒɪtl/",
+        pos: "adj.",
+        zh: "數位的、數位化的",
+        enExample: "We are living in a fast-paced and interconnected digital world.",
+        zhExample: "我們生活在一個快節奏且緊密互聯的數位世界中。",
         mastered: false
       },
       {
-        word: "track",
-        phonetic: "/træk/",
-        pos: "v. / n.",
-        zh: "追蹤、記錄；跑道、軌跡",
-        enExample: "You can track your study progress with this tool.",
-        zhExample: "你可以用這個工具追蹤自己的學習進度。",
-        mastered: false
-      },
-      {
-        word: "progress",
-        phonetic: "/ˈprɑːɡres/",
+        word: "screen",
+        phonetic: "/skriːn/",
         pos: "n. / v.",
-        zh: "進步、進展、持續前進",
-        enExample: "Consistent practice is the key to steady progress.",
-        zhExample: "持續的練習是取得穩定進步的關鍵。",
+        zh: "螢幕、屏幕",
+        enExample: "Staring at a bright screen for hours can cause severe eye fatigue.",
+        zhExample: "長時間盯著明亮的螢幕會導致嚴重的眼睛疲勞。",
         mastered: false
       },
       {
-        word: "appetite",
-        phonetic: "/ˈæpɪtaɪt/",
+        word: "marriage",
+        phonetic: "/ˈmærɪdʒ/",
         pos: "n.",
-        zh: "胃口、食慾、強烈渴望",
-        enExample: "A long walk will certainly give you a healthy appetite.",
-        zhExample: "長時間散步一定會讓你胃口大開。",
+        zh: "結合體、結合、融合；婚姻",
+        enExample: "This innovative device is a perfect marriage of art and technology.",
+        zhExample: "這款創新裝置是藝術與科技的完美結合體。",
         mastered: false
       },
       {
-        word: "concentration",
-        phonetic: "/ˌkɑːnsenˈtreɪʃn/",
+        word: "era",
+        phonetic: "/ˈɪrə/",
         pos: "n.",
-        zh: "集中、專注力；濃度 (原輸入: concentartion)",
-        enExample: "Deep learning requires quiet surroundings and intense concentration.",
-        zhExample: "深度學習需要安靜的環境與高度的專注力。",
+        zh: "紀元、時代、年代",
+        enExample: "The rapid rise of artificial intelligence marks a revolutionary new era.",
+        zhExample: "人工智慧的迅猛發展標誌著一個革命性的全新紀元。",
         mastered: false
       },
       {
-        word: "pile",
-        phonetic: "/paɪl/",
-        pos: "n. / v.",
-        zh: "堆疊、一堆；堆積",
-        enExample: "He piled the reference books neatly on the study desk.",
-        zhExample: "他把參考書籍整齊地堆疊在書桌上。",
+        word: "technology",
+        phonetic: "/tekˈnɑːlədʒi/",
+        pos: "n.",
+        zh: "科技、技術 (原輸入: techonlogy，已糾正拼寫)",
+        enExample: "Cutting-edge technology is transforming how we communicate and learn.",
+        zhExample: "尖端科技正在徹底改變我們交流與學習的方式。",
         mastered: false
       }
     ];
 
     let words = [];
     try {
-      const saved = localStorage.getItem("vocab_master_words");
-      if (saved) {
-        words = JSON.parse(saved);
-        DEFAULT_WORDS.forEach(dw => {
-          if (!words.some(w => w.word.toLowerCase() === dw.word.toLowerCase())) {
-            words.push(dw);
-          }
-        });
-      } else {
+      const savedVersion = localStorage.getItem("vocab_lesson_version");
+      if (savedVersion !== CURRENT_LESSON_VERSION) {
+        // Automatically migrate to new vocabulary list
         words = DEFAULT_WORDS;
+        localStorage.setItem("vocab_lesson_version", CURRENT_LESSON_VERSION);
+        localStorage.setItem("vocab_master_words", JSON.stringify(words));
+      } else {
+        const saved = localStorage.getItem("vocab_master_words");
+        words = saved ? JSON.parse(saved) : DEFAULT_WORDS;
       }
     } catch(e) {
       words = DEFAULT_WORDS;
@@ -520,7 +522,6 @@
           window.speechSynthesis.speak(warmUp);
         } catch(e){}
       }
-      // Also prime the audio element
       const audio = document.getElementById("audioFallback");
       if (audio) {
         audio.play().catch(function(){});
@@ -575,7 +576,6 @@
     function playAudioFallback(word) {
       try {
         const audio = document.getElementById("audioFallback") || new Audio();
-        // Standard US pronunciation audio stream
         audio.src = "https://dict.youdao.com/dictvoice?type=2&audio=" + encodeURIComponent(word);
         audio.play().catch(function(e) {
           console.warn("Audio tag play prevented:", e);
